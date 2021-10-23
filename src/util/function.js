@@ -11,6 +11,7 @@ module.exports = {
                 .setTitle("embed")
                 .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL())
                 //.setFooter(`${this.client.user.username}`, this.client.user.displayAvatarURL())
+                .setTimestamp()
         }
     }
 }

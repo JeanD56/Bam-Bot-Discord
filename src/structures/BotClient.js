@@ -55,7 +55,7 @@ module.exports = class BotClient extends AkairoClient {
             }
         );
 
-        this.CommandHandler = new CommandHandler(this, {
+        this.commandHandler = new CommandHandler(this, {
             allowMention: true,
             typing: true,
             prefix: async message => {
@@ -70,7 +70,7 @@ module.exports = class BotClient extends AkairoClient {
             argumentDefaults: 'non defini',
         });
 
-        this.listenerHandler = new ListenerHandler(this, {
+        this.ListenerHandler = new ListenerHandler(this, {
             directory: './src/listeners'
         })
 
@@ -82,12 +82,15 @@ module.exports = class BotClient extends AkairoClient {
         this.guildMemberSettings = new GuildsProvider();
     }
 
-    init() {
-        this.CommandHandler.useListenerHandler(this.listenerHandler);
-        this.CommandHandler.loadAll();
-        console.log(`Commande   -> ${this.CommandHandler.modules.size}`);
-        this.listenerHandler.loadAll();
-        console.log(`Event      -> ${this.listenerHandler.modules.size}`);
+    async init() {
+        this.commandHandler.useListenerHandler(this.ListenerHandler);
+        this.ListenerHandler.setEmitters({
+            commandHandler: this.commandHandler
+        });
+        await this.commandHandler.loadAll();
+        console.log(`Commande   -> ${this.commandHandler.modules.size}`);
+        await this.ListenerHandler.loadAll();
+        console.log(`Event      -> ${this.ListenerHandler.modules.size}`);
     }
 
     async start() {
