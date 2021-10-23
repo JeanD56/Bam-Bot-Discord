@@ -1,0 +1,19 @@
+{
+  "name": "jojo_bot",
+  "version": "13.0.0",
+  "description": "Bot Discord",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node .",
+    "nodemon": "nodemon ."
+  },
+  "author": "JEAN",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "common-tags": "^1.8.0",
+    "discord-akairo": "github:Tricked-dev/discord-akairo",
+    "discord.js": "^13.0.0",
+    "mongoose": "^6.0.11"
+  }
+}
