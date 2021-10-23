@@ -10,6 +10,7 @@ class MessageCreateListner extends Listener {
     }
 
     async exec(message) {
+        if(message.author.bot) return;
         if(!await User.findOne({id: message.author.id})){
             if(!await Guild.findOne({id: message.guild.id})){
                 this.client.emit("guildCreate", message.guild);
@@ -17,8 +18,6 @@ class MessageCreateListner extends Listener {
                 this.client.emit('guildMemberAdd', message.member);
             }
         }else{
-
-
             
         }
     }

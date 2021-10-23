@@ -8,9 +8,13 @@ const guildSchema = Schema({
     owner: String,
     log: {
         logChannel: { type: String, default: null },
-        memberJoin: { type: Boolean, default: true },
-        memberLeave: { type: Boolean, default: true },
-        image: { type: String, default: "https://images.photowall.com/products/58243/galaxy-1.jpg?h=699&q=85" }
+        memberJoin: { type: Boolean, default: false },
+        memberLeave: { type: Boolean, default: FontFaceSetLoadEvent },
+        image: { type: String, default: "https://images.photowall.com/products/58243/galaxy-1.jpg?h=699&q=85" },
+        autorole: {
+            active: {type: Boolean, default: false},
+            role: [String]
+        }
     },
     xp: {
         global: { type: Boolean, default: true }

@@ -22,14 +22,14 @@ class GuildCreateListner extends Listener {
                 console.log("Erreur -> DB -> Guild déja rejoint");
             }
 
-            guild.members.cache.forEach(async member => {
+            /*guild.members.cache.forEach(async member => {
                 if (!await User.findOne({ id: member.user.id })) {
                     this.client.emit("guildMemberAdd", member);
                 }
                 if (! await GuildMember.findOne({guildID: member.guild.id, userID: member.user.id})){
                     this.client.emit("guildMemberAdd", member);
                 }
-            });
+            });*/
             console.log('Guild Rejoint');
         } catch (error) {
             console.log(error);
