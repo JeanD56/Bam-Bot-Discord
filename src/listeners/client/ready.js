@@ -17,18 +17,6 @@ class ReadyListner extends Listener {
             'moi ?',
             'super',
         ]
-
-        /*setInterval(function() {
-            let status = statuses[Math.floor(Math.random() * statuses.length)];
-            bot.client.user.setPresence({
-                activities: [{
-                    name: status,
-                    type: 'LISTENING'
-                }],
-                status: 'idle'
-            });
-            
-        }, 1000);*/
     }
 }
 

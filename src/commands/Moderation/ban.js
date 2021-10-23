@@ -6,7 +6,7 @@ class BanCommand extends Command {
             aliases: ['ban'],
             description: {
                 content: "",
-                usage: "",
+                usage: "@member <raison du ban>",
                 exemples: [""]
             },
             args: [

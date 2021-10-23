@@ -9,12 +9,12 @@ const guildSchema = Schema({
     log: {
         logChannel: { type: String, default: null },
         memberJoin: { type: Boolean, default: false },
-        memberLeave: { type: Boolean, default: FontFaceSetLoadEvent },
+        memberLeave: { type: Boolean, default: false },
         image: { type: String, default: "https://images.photowall.com/products/58243/galaxy-1.jpg?h=699&q=85" },
-        autorole: {
+        /*autorole: {
             active: {type: Boolean, default: false},
             role: [String]
-        }
+        }*/
     },
     xp: {
         global: { type: Boolean, default: true }

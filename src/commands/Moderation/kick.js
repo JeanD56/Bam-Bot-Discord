@@ -6,7 +6,7 @@ class KickCommand extends Command {
             aliases: ['kick'],
             description: {
                 content: "",
-                usage: "",
+                usage: "@member <raison du kick>",
                 exemples: [""]
             },
             args: [
