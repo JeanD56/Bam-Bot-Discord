@@ -1,1 +1,14 @@
-<h1>TEST</h1>
+<%- include('./helpers/header');%>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Tableau de bord - <%= bot.user.username %>
+                </h1>
+                <h4 class="subtitle">
+                    bot discord
+                </h4>
+            </div>
+        </div>
+    </section>
+<%- include('./helpers/footer');%>

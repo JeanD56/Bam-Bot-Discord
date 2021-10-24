@@ -1,5 +1,5 @@
 const express = require('express');
-const dashboard = express()
+const dashboard = express();
 const path = require('path');
 const passport = require('passport');
 const Strategy = require('passport-discord').Strategy;
@@ -7,7 +7,6 @@ const session = require('express-session');
 const MemoryStore = require('memorystore')(session);
 
 const config = require('../../config.json');
-const { isNull } = require('util');
 
 module.exports = client => {
     const dashboardDirectory = path.resolve(
@@ -17,7 +16,7 @@ module.exports = client => {
         `${dashboardDirectory}${path.sep}templates`
     );
     dashboard.use(
-        "./public",
+        "/public",
         express.static(path.resolve(
             `${dashboardDirectory}${path.sep}public`
         ))
@@ -25,7 +24,7 @@ module.exports = client => {
 
     passport.use(
         new Strategy({
-            clientID: "423887705064079360",//this.client.application.id,
+            clientID: config.dashboard.clientID,
             clientSecret: config.dashboard.oauthSecret,
             callbackURL: config.dashboard.callbackurl,
             scope: ["identity", "guilds"]
@@ -69,5 +68,9 @@ module.exports = client => {
         renderTemplate(res, req, "index.ejs");
     });
 
-    dashboard.listen(config.dashboard.port);
+    dashboard.get("/commands", (req, res) => {
+        renderTemplate(res, req, "commands.ejs");
+    });
+
+    client.site = dashboard.listen(config.dashboard.port);
 }
