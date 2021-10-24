@@ -22,12 +22,19 @@ module.exports = client => {
         ))
     );
 
+    passport.serializeUser((user, done) => {
+        done(null, user)
+    });
+    passport.deserializeUser((obj, done) => {
+        done(null, obj)
+    });
+
     passport.use(
         new Strategy({
             clientID: config.dashboard.clientID,
             clientSecret: config.dashboard.oauthSecret,
             callbackURL: config.dashboard.callbackurl,
-            scope: ["identity", "guilds"]
+            scope: ["identify", "guilds"]
         },
             (accessToken, refeshToken, profile, done) => {
                 process.nextTick(() => done(null, profile));
@@ -64,6 +71,27 @@ module.exports = client => {
         );
     };
 
+    dashboard.get("/login", (req, res, next) => {
+        req.session.backURL = "/";
+        next();
+    },
+    passport.authenticate("discord"));
+
+    dashboard.get("/callback", passport.authenticate("discord"), (req, res) => {
+        res.redirect('/');
+    })
+
+    dashboard.get("/logout", (req, res) => {
+        req.session.destroy(() => {
+            req.logout();
+            res.redirect('/');
+        })
+    })
+
+    dashboard.get("/dashboard", (req, res) => {
+        renderTemplate(res, req, "index.ejs");
+    });
+
     dashboard.get("/", (req, res) => {
         renderTemplate(res, req, "index.ejs");
     });
@@ -72,5 +100,5 @@ module.exports = client => {
         renderTemplate(res, req, "commands.ejs");
     });
 
-    client.site = dashboard.listen(config.dashboard.port);
+    dashboard.listen(config.dashboard.port);
 }

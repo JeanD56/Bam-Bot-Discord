@@ -12,8 +12,9 @@ class ReadyListner extends Listener {
         console.log("I'm Ready !");
 
         /////////////////////////
-    require('../../structures/dashboard')(this.client);
+        require('../../structures/dashboard')(this.client);
         /////////////////////////
+
     }
 }
 
