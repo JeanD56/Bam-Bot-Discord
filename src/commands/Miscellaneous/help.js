@@ -1,7 +1,7 @@
 const { stripIndent } = require('common-tags');
 const { Command } = require('discord-akairo');
 const { MessageActionRow, MessageButton } = require('discord.js');
-const { GitHubLink } = require('../../../config.json')
+const { GitHubLink } = require('../../util/config.js')
 
 class HelpCommand extends Command {
     constructor() {
