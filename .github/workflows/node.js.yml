@@ -24,7 +24,7 @@ jobs:
       CLUSTERNAME: ${{ secrets.CLUSTERNAME }}
       DBNAME: ${{ secrets.DBNAME }}
       
-      MOONGOSTRING: ${{ secrets.MongoDB.MOONGOSTRING }}
+      MOONGOSTRING: ${{ secrets.MOONGOSTRING }}
       
       CLIENTID: ${{ secrets.CLIENTID }}
       OAUTHSECRET: ${{ secrets.OAUTHSECRET }}
