@@ -7,9 +7,9 @@ module.exports = {
     dashboard: {
         clientID: "423887705064079360",
         oauthSecret: "OBSqiRJKBGVQXfROBgLEHNidDvl5gD48",
-        callbackurl: "http://localhost:3030/callback",
+        callbackurl: "https://jeand56.github.io/Bam-Bot-Discord/callback",
         secret: "jojo c'est la vie",
-        domaine: "localhost",
-        port: "3030",
+        domaine: "https://jeand56.github.io/Bam-Bot-Discord/",
+        port: "https",
     }
 }
