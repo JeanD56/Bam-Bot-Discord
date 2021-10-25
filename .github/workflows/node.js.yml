@@ -14,6 +14,25 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      TOKEN: ${{ secrets.TOKEN }}
+      PREFIX: ${{ secrets.PREFIX }}
+      OWNERID: ${{ secrets.OWNERID }}
+      
+      USER: ${{ secrets.USER }}
+      PSWD: ${{ secrets.PSWD }}
+      CLUSTERNAME: ${{ secrets.CLUSTERNAME }}
+      DBNAME: ${{ secrets.DBNAME }}
+      
+      MOONGOSTRING: ${{ secrets.MOONGOSTRING }}
+      
+      CLIENTID: ${{ secrets.CLIENTID }}
+      OAUTHSECRET: ${{ secrets.OAUTHSECRET }}
+      CALLBACKURL: ${{ secrets.CALLBACKURL }}
+      SECRET: ${{ secrets.SECRET }}
+      DOMAINE: ${{ secrets.DOMAINE }}
+      PORT: ${{ secrets.PORT }}
+
     strategy:
       matrix:
         node-version: [16.x]
