@@ -6,7 +6,7 @@ const Strategy = require('passport-discord').Strategy;
 const session = require('express-session');
 const MemoryStore = require('memorystore')(session);
 
-const config = require('../../config.json');
+const config = require('../util/config');
 
 module.exports = client => {
     const dashboardDirectory = path.resolve(
