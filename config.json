@@ -1,0 +1,10 @@
+{
+    "TOKEN" : "process.env.TOKEN",
+    "Dev": [""],
+    "Channel": [""],
+    "prefix" : "*",
+    "nodes": [{"host": "localhost", "port": 2333, "password": "youshallnotpass"}
+    ],
+    "channelConsolAllow": ["", ""],
+    "nbChannelConsolAllow":2
+}

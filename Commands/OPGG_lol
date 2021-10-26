@@ -1,0 +1,23 @@
+const Discord = require('discord.js');
+const config = require('../config.json');
+const color = require('../colors.json');
+
+module.exports.run = async(bot,message,args) =>{
+
+    const name = args[0];
+
+    if(!name){
+        message.delete();
+        message.channel.send(`Veuillez mettre un pseudo Leagues Of Leagend Valide ! ${config.prefix}opggl \`\`Pseudo\`\``).then(message => message.delete(5000))
+    } else {
+        message.delete();
+        message.channel.send(`http://euw.op.gg/summoner/userName=${name}`)
+    }
+
+}
+
+module.exports.config = {
+    name: "OPGG_lol",
+    command: "opggl",
+    description: ""
+}

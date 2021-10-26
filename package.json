@@ -1,0 +1,24 @@
+{
+  "name": "bam_bot",
+  "version": "11.0.0",
+  "description": "Bot Discord crée pendant le confinement covid-19.",
+  "main": "main.js",
+  "scripts": {
+    "Lava": "java -jar Lavalink.jar",
+    "start": "node main.js"
+  },
+  "author": "JeanD56",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.2",
+    "common-tags": "^1.8.0",
+    "discord.js": "^12.1.1",
+    "erela.js": "^1.1.7",
+    "ffmpeg-static": "^4.2.7",
+    "fs": "0.0.1-security",
+    "node-fetch": "^2.6.0",
+    "opusscript": "0.0.7",
+    "r6api.js": "^1.3.0",
+    "superagent": "^5.2.2"
+  }
+}
