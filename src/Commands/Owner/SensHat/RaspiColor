@@ -1,0 +1,47 @@
+const Command = require('../../../Structures/Command.js');
+
+module.exports = class extends Command {
+  constructor(...args) {
+      super(...args, {
+        aliases: ['color']
+      });
+  }
+
+  async run(message, args){
+
+    const sens = require('node-sense-hat');
+
+    let msg = await message.channel.send('...');
+
+    switch (args.length){
+
+      case 1:
+        if(args[0] == 'clear'){
+          sens.Leds.clear();
+          msg.edit('led mise a 0!\n ^^');
+        }else{
+          
+        }
+        break;
+
+      case 3:
+        let color = [parseInt(args[0]), parseInt(args[1]), parseInt(args[2])];
+
+        sens.Leds.clear();
+
+        for(let i=0; i<8; i++){
+          for(let j=0; j<8; j++){
+            sens.Leds.setPixel(i, j, color);
+          }
+        }
+        msg.edit('couleur de ton Raspberry Changer!\n ^^');
+        break;
+
+      default:
+        msg.edit('Erreur\nfait gaffe a ce que tu dis ok ?');
+    }
+
+
+    
+  }
+}
