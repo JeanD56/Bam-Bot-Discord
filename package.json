@@ -7,6 +7,9 @@
     "start": "node .",
     "nodemon": "nodemon ."
   },
+  "engines": {
+    "node": "16.x"
+  },
   "author": "JEAN",
   "license": "MIT",
   "dependencies": {
