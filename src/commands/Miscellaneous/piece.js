@@ -1,4 +1,3 @@
-
 const { Command } = require('discord-akairo');
 
 class PieceCommand extends Command {
@@ -6,7 +5,7 @@ class PieceCommand extends Command {
         super('piece', {
             aliases: ['piece', "pf"],
             description: {
-                content: "",
+                content: "permet de lancer un pile ou face",
                 usage: "",
                 exemples: [""]
             }

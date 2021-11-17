@@ -1,19 +1,25 @@
 const { stripIndent } = require('common-tags');
 const { Command } = require('discord-akairo');
 const { MessageActionRow, MessageButton } = require('discord.js');
-const { GitHubLink } = require('../../util/config.js')
 
 class HelpCommand extends Command {
     constructor() {
         super('help', {
             aliases: ['help', 'h'],
-            args: [{ id: 'command', type: 'commandAlias' }],
-
+            description: {
+                content: "permet de voir les information des commandes du bot",
+                usage: "<command>",
+                exemples: ["", "<command Name>", "<command Alias>"]
+            },
+            args: [{ id: 'command', type: 'commandAlias' }]
         });
     }
 
     async exec(message, args) {
         try {
+            const moderationDB = this.client.moderation.get();
+            let GitHubLink = "https://www.github.com/"
+            if(moderationDB.GitHubLink) GitHubLink = moderationDB.GitHubLink;
             let row = new MessageActionRow().addComponents(
                 new MessageButton()
                     .setLabel('GitHub')
@@ -37,8 +43,7 @@ class HelpCommand extends Command {
                 for (const category of this.handler.categories.values()) {
                     let cmdName;
 
-
-                    if (message.author.id != this.client.ownerID) {
+                    if (!this.client.ownerID.includes(message.author.id)) {
                         cmdName = `${category
                             .filter(cmd => cmd.id.length > 0)
                             .filter(cmd => !cmd.ownerOnly)
@@ -87,7 +92,7 @@ class HelpCommand extends Command {
                             usage = prefix + args.command.id + " " + args.command.description.usage;
                         }
                         if (args.command.description.exemples) {
-                            exemples = prefix + args.command.description.exemples.join(`| ${prefix}`)
+                            exemples = "\n\t"+prefix + args.command.id + " " + args.command.description.exemples.join(`\n\t${prefix}${args.command.id} `)
                         }
                     }
 

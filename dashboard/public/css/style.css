@@ -6,25 +6,18 @@
 html, body {
     height: 100%;
     overflow: auto;
-<<<<<<< HEAD
-=======
     color: #b9bbbe;
 }
 
 .navbar {
     background: #202225;
     color: wheat;
->>>>>>> 3161726 (ajout fichier ou modification)
 }
 
 footer {
     background: #222;
     color: wheat;
-<<<<<<< HEAD
-    padding-bottom: 13px;
-=======
     padding-bottom: 15px;
->>>>>>> 3161726 (ajout fichier ou modification)
 }
 
 .hero {
@@ -32,11 +25,7 @@ footer {
 }
 
 footer p {
-<<<<<<< HEAD
-    padding-top: 12px;
-=======
     padding-top: 10px;
->>>>>>> 3161726 (ajout fichier ou modification)
 }
 
 a {
@@ -56,8 +45,6 @@ strong {
 .img-brand {
     border-radius: 50px;
     margin-right: 5px;
-<<<<<<< HEAD
-=======
     margin-left: 5px;
 }
 
@@ -83,5 +70,9 @@ strong {
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
->>>>>>> 3161726 (ajout fichier ou modification)
+}
+
+.guildIcon {
+    height: 50%;
+    width: 50%;
 }

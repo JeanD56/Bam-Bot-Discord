@@ -1,20 +1,9 @@
-<<<<<<< HEAD
 const BotClient = require('./structures/BotClient');
-const config = require('./util/config.js');
+const dotenv = require('dotenv').config();
 
-let botClient = new BotClient({
-    ownersID: config.OWNERID,
-    prefix:  config.PREFIX,
-});
+let botClient = new BotClient({ defaultPrefix: process.env.Prefix });
 
-=======
-const BotClient = require('./structures/BotClient');
-const config = require('./util/config.js');
-
-let botClient = new BotClient({
-    ownersID: config.OWNERID,
-    prefix:  config.PREFIX,
-});
-
->>>>>>> 3161726 (ajout fichier ou modification)
-botClient.start(config.TOKEN, config.MONGOOSTRING)
+botClient.start(
+    process.env.TOKEN,
+    process.env.MONGOOSTRING
+)

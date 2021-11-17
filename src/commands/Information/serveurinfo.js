@@ -6,14 +6,15 @@ class ServeurInfoCommand extends Command {
         super('serveurinfo', {
             aliases: ['serveurinfo', 'si'],
             description: {
-                content: "mettre de tester le ping du bot",
-                usage: "ping",
-                exemples: ["ping"]
+                content: "voir les informations du serveur",
+                usage: "",
+                exemples: [""]
             }
         });
     }
 
     async exec(message) {
+        var roleLen = 5;
 
         const filterLevels = {
             DISABLED: 'Off',
@@ -24,16 +25,14 @@ class ServeurInfoCommand extends Command {
             NONE: 'None',
             LOW: 'Low',
             MEDIUM: 'Medium',
-            HIGH: '(╯°□°）╯︵ ┻━┻',
-            VERY_HIGH: '┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻'
+            HIGH: '(╯°□°）╯︵ ┻━┻ (HIGH !)',
+            VERY_HIGH: '┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻ (VERY HIGH !!!!!!!)'
         };
 
-        const roles = this.client.guilds.cache.get(message.guild.id).roles.cache //.sort((a, b) => b.position - a.position).map(role => role.toString());
+        const roles = this.client.guilds.cache.get(message.guild.id).roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString());
         const members = this.client.guilds.cache.get(message.guild.id).members.fetch({withPresences: true})
         const channels = this.client.guilds.cache.get(message.guild.id).channels.cache 
         const emojis = message.guild.emojis.cache;
-
-        var roleLen = 5;
 
         const embed = this.client.functions.embed(message, this.client)
             .setTitle(`__${message.guild.name}__`)
@@ -55,8 +54,8 @@ class ServeurInfoCommand extends Command {
         stats = stats + `\n**❯❯ emojis Annimé:** ${emojis.filter(emoji => emoji.animated).size}`;
         stats = stats + `\n**❯❯ emojis Normal:** ${emojis.filter(emoji => !emoji.animated).size}`;
         stats = stats + `\n**❯❯ Membres:** ${message.guild.memberCount}`;
-        /*stats = stats + `\n**❯❯ Humains:** ${members.filter(member => !member.user.bot).size}`;
-        stats = stats + `\n**❯❯ BOT:** ${members.filter(member => member.user.bot).size}`;*/
+        stats = stats + `\n**❯❯ Humains:** ${(await members).filter(member => !member.user.bot).size}`;
+        stats = stats + `\n**❯❯ BOT:** ${(await members).filter(member => member.user.bot).size}`;
         stats = stats + `\n**❯❯ Channels:** ${channels.filter(channel => channel.type !== 'GUILD_CATEGORY').size}`;
         stats = stats + `\n**❯❯ Channels Textuel:** ${channels.filter(channel => channel.type === 'GUILD_TEXT').size}`;
         stats = stats + `\n**❯❯ Channels Vocaux:** ${channels.filter(channel => channel.type === 'GUILD_VOICE').size}`;
@@ -66,34 +65,46 @@ class ServeurInfoCommand extends Command {
         stats = stats + `\n**❯❯ Boost:** ${message.guild.PreniumSubcriiptionCount || '0'}`;
         stats = stats + '\n\u200b'
         
-        console.log(this.client.guilds.cache.get(message.guild.id).members.cache.get(message.author.id).presence.status);
-        console.log(this.client.guilds.cache.get(message.guild.id).members.cache.get(message.author.id).presence.clientStatus);
-        
-        let presence = `**❯❯ Online:** ${members.then(members => { 
-            return members.filter((member) => !member.user?.bot && member.presence?.status === 'online').map(member => member);}).size}`;
-        presence = presence + `\n**❯❯ Absent:** ${members.then(members => {
-            return members.filter((member) => !member.user?.bot && member.presence?.status === 'offline').map(member => member);}).size}`;
-        presence = presence + `\n**❯❯ Ne Pas Déranger:** ${members.then(members => { 
-            return members.filter((member) => !member.user?.bot && member.presence?.status === 'idle').map(member => member);}).size}`;
-        presence = presence + `\n**❯❯ Déconnecter:** ${members.then(members => { 
-            return members.filter((member) => !member.user?.bot && member.presence?.status === 'offline').map(member => member);}).size}`;
+        let presence = `**❯❯ Online:** ${(await members).filter(
+            member => !member.user?.bot && member.presence?.status === 'online').map(member => member).length}`;
+        presence = presence + `\n**❯❯ Absent:** ${(await members).filter(
+            member => !member.user?.bot && member.presence?.status === 'idle').map(member => member).length}`;
+        presence = presence + `\n**❯❯ Ne Pas Déranger:** ${(await members).filter(
+            member => !member.user?.bot && member.presence?.status === 'dnd').map(member => member).length}`;
+        presence = presence + `\n**❯❯ Déconnecter:** ${(await members).filter(
+            member => !member.user?.bot && member.presence?.status === 'offline').map(member => member).length}`;
         presence = presence + '\n\u200b';
 
-        let device = `\n**❯❯ Mobile:** ${members.then(members => {
-            return members.filter(member => member.presence?.clientStatus.mobile === ("online" || "idle" || "offline")).map(member => member);}).size}`;
-        device = device + `\n**❯❯ App:** ${members.then(members => {
-            return members.filter(member => member.presence?.clientStatus.desktop === ("online" || "idle" || "offline")).map(member => member);}).size}`;
-        device = device + `\n**❯❯ Web:** ${members.then(members => {
-            return members.filter(member => member.presence?.clientStatus.web === ("online" || "idle" || "offline")).map(member => member);}).size}`;
+        let device = `\n**❯❯ Mobile:** ${(await members).filter(
+            member => member.presence?.clientStatus.mobile === ("online" || "idle" || "dnd" || "offline")).map(member => member).length}`;
+        device = device + `\n**❯❯ App:** ${(await members).filter(
+            member => member.presence?.clientStatus.desktop === ("online" || "idle" || "dnd" || "offline")).map(member => member).length}`;
+        device = device + `\n**❯❯ Web:** ${(await members).filter(
+            member => member.presence?.clientStatus.web === ("online" || "idle" || "dnd" || "offline")).map(member => member).length}`;
         device = device + '\n\u200b';
         
+        let rolesField = "";
+        if(roles.length > roleLen){
+            let rolesArray = [];
+            roles.forEach(r => {
+                if(r.length <= roleLen){
+                    rolesArray.push(r);
+                    console.log(`${r} -> ${rolesArray}`);
+                }
+            });
+            rolesField = rolesArray.join(', ');
+        }else if(roles.length < roleLen){
+            rolesField = roles.join(', ');
+        }else{
+            rolesField = "None";
+        }
         
         embed.addField(`__General__`, general);
         embed.addField('__Statistics__', stats);
         embed.addField('__Presences__', presence);
         embed.addField('__Device__', device);
 
-        embed.addField(`__Roles [${roles.length}]__`, roles.length < roleLen ? roles.join(', ') : roles.length > roleLen ? roles.each(r => r.length < roleLen).join(', ')+" ..." : 'None');
+        embed.addField(`__Roles [${roles.length}]__`, rolesField+ " Err");
 
         embed.setTimestamp();
 

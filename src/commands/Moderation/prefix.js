@@ -5,8 +5,8 @@ class PrefixCommand extends Command {
         super('prefix', {
             aliases: ['prefix'],
             description: {
-                content: "",
-                usage: "prefix <nouveau préfix>",
+                content: "changer de prefix pour le serveur",
+                usage: "<nouveau préfix>",
                 exemples: ["prefix"]
             },
             args: [{

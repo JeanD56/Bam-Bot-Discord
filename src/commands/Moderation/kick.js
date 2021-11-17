@@ -5,9 +5,9 @@ class KickCommand extends Command {
         super('kick', {
             aliases: ['kick'],
             description: {
-                content: "",
+                content: "Permet de kick un membre du serveur",
                 usage: "@member <raison du kick>",
-                exemples: [""]
+                exemples: ["kick @member Ne respect pas les règles de ce serveur."]
             },
             args: [
                 { id: 'member', type: 'member' },

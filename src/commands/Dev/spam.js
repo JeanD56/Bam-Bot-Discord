@@ -18,8 +18,7 @@ class SpamCommand extends Command {
     }
 
     exec(message, { nombre, text }) {
-        message.delete();
-
+        
         if (!nombre) return message.channel.send("oO");
 
         if (!text) return message.channel.send("Envoyer un message a spamer oO")

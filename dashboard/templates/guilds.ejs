@@ -23,11 +23,11 @@
                                     <figure class="image is-square">
                                         <img class="is-rounded" src="
                                             <%if(bot.guilds.cache.get(guild.id).iconURL({dynamic: true, format: 'png'})){%>
-                                                <%= bot.guilds.cache.get(guild.id).iconURL({dynamic: true, format: 'png'}) %>
+                                                <%= bot.guilds.cache.get(guild.id).iconURL({dynamic: true, format: 'png', size: 128}) %>
                                             <% }else{ %>
-                                                <%= users.cache.get(user.id).displayAvatarURL({dynamic: true, format: 'png'}) %>
+                                                <%= users.cache.get(user.id).displayAvatarURL({dynamic: true, format: 'png', size: 128}) %>
                                             <% } %>                                            
-                                            ">
+                                            " class = "image is-64x64">
                                     </figure>
                                 </div>
                                 <footer class="card-footer">

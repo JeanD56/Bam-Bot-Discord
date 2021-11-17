@@ -6,12 +6,12 @@ class UserInfoCommand extends Command {
         super('userinfo', {
             aliases: ['userinfo', 'ui'],
             description: {
-                content: "",
-                usage: "",
-                exemples: [""]
+                content: "voir les information d'un utilisateur",
+                usage: "<membre>",
+                exemples: ["", "@member"]
             },
             args: [
-                {id: "member", type: 'member'}
+                { id: "member", type: 'member' }
             ]
         });
     }
@@ -34,7 +34,10 @@ class UserInfoCommand extends Command {
             VERIFIED_DEVELOPER: 'Verified Bot Developer'
         };
 
-        const member = args.member || message.member;
+        let member;
+        if (args.member) { member = args.member; } else { member = message.author; }
+        member = this.client.guilds.cache.get(message.guild.id).members.cache.get(member.id);
+        const mbr = this.client.guilds.cache.get(message.guild.id).members.fetch({ user: member.id, withPresences: true })
         const roles = member.roles.cache
             .sort((a, b) => b.position - a.position)
             .map(role => role.toString())
@@ -47,7 +50,7 @@ class UserInfoCommand extends Command {
             .setTitle('Information Utilisateur')
             .setDescription(member.user.tag)
             .setThumbnail(member.user.displayAvatarURL({ type: 'png', dynamic: true, size: 512 }))
-            .setColor(member.discplayHexColor || 'BLACK');
+            .setColor(member.displayColor || 'BLACK');
 
         let user = `**❯❯ Nom:** ${member.user.username}`;
         user = user + `\n**❯❯ Discriminator:** ${member.user.discriminator}`;
@@ -55,8 +58,17 @@ class UserInfoCommand extends Command {
         user = user + `\n**❯❯ Flags:** ${userFlags.length ? userFlags.map(flag => flags[flag]).join(', ') : 'None'}`;
         user = user + `\n**❯❯ Avatar:** [[lien vers l'avatar]](${member.user.displayAvatarURL({ type: 'png', dynamic: true })})`;
         //user = user + `\n**❯❯ Crée le:** //${moment(message.user.createdTimestamp).format('LT')} ${moment(message.user.createdTimestamp).format('LL')} ${moment(message.user.createdTimestamp).fromNow()}`;
-        //user = user + `\n**❯❯ Statut:** ${member.user.presence.statuts}`;
-        user = user + `\n**❯❯ ${member.presence.activities["type"] || 'Jeu'}:** ${member.presence.activities["name"] || 'Ne joue a aucun jeu'}`;
+        user = user + `\n**❯❯ Statut:** ${await mbr.presence?.status}`;
+        user = user + `\n**❯❯ Device:** ${await mbr.then(
+            m => {
+                let devices = [];
+                if (m.presence?.clientStatus.mobile === ("online" || "idle" || "dnd" || "offline")) devices.push("📱");
+                if (m.presence?.clientStatus.desktop === ("online" || "idle" || "dnd" || "offline")) devices.push("💻");
+                if (m.presence?.clientStatus.web === ("online" || "idle" || "dnd" || "offline")) devices.push("🌐");
+                return devices.join(', ')
+            }
+        )}`;
+        user = user + `\n**❯❯ ${member.presence?.activities["type"] || 'Jeu'}:** ${member.presence.activities["name"] || 'Ne joue a aucun jeu'}`;
         user = user + `\n\u200b`;
 
 
@@ -65,13 +77,9 @@ class UserInfoCommand extends Command {
         membre = membre + `\n**❯❯ Role Group:** ${member.roles.hoist ? member.roles.hoist.name : "None"}`;
         membre = membre + `\n**❯❯ Roles [${roles.length}]:** ${roles.length < lenRole ? roles.join(', ') : roles.length > lenRole ? this.client.utils.trimArray(roles, lenRole) : "None"}`;
         membre = membre + `\n\u200b`;
- 
-        let permission = `❯ [${this.client.guilds.cache.get(message.guild.id).members.cache.get(message.author.id).permissions.toArray().join(']\n ❯ [').toLowerCase()}]`;
-       permission =permission + `\n\u200b`;
 
         embed.addField('User', user)
             .addField('Member', membre)
-            .addField('Permissions', permission)
 
         return message.reply({
             embeds: [embed]

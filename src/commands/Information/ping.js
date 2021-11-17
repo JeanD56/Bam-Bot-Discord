@@ -6,8 +6,8 @@ class PingCommand extends Command {
             aliases: ['ping'],
             description: {
                 content: "mettre de tester le ping du bot",
-                usage: "ping",
-                exemples: ["ping"]
+                usage: "",
+                exemples: [""]
             }
         });
     }

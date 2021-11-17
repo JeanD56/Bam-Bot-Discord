@@ -1,4 +1,3 @@
-
 const { Command } = require('discord-akairo');
 
 class DeCommand extends Command {
@@ -8,7 +7,7 @@ class DeCommand extends Command {
             description: {
                 content: "",
                 usage: "(nombre face, par defaut 6)",
-                exemples: [""]
+                exemples: ["", "24"]
             },
             args: [{
                 id: 'faces',
