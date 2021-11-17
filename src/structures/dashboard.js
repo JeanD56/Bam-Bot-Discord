@@ -60,6 +60,11 @@ module.exports = client => {
     const renderTemplate = (res, req, templates, data = {}) => {
         const baseData = {
             bot: client,
+<<<<<<< HEAD
+=======
+            handler: this.handler,
+            users: client.users,
+>>>>>>> 3161726 (ajout fichier ou modification)
             path: req.path,
             user: req.isAuthenticated() ? req.user : null
         };
@@ -100,5 +105,14 @@ module.exports = client => {
         renderTemplate(res, req, "commands.ejs");
     });
 
+<<<<<<< HEAD
     dashboard.listen(config.dashboard.port);
 }
+=======
+    dashboard.get("/guilds", (req, res) => {
+        renderTemplate(res, req, "guilds.ejs");
+    });
+
+    dashboard.listen(config.dashboard.port);
+}
+>>>>>>> 3161726 (ajout fichier ou modification)

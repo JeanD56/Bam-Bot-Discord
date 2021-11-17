@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
+=======
+<html lang="fr">
+>>>>>>> 3161726 (ajout fichier ou modification)
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="public/css/style.css">
+<<<<<<< HEAD
+=======
+    <link src="<%= bot.user.displayAvatarURL() %>">
+>>>>>>> 3161726 (ajout fichier ou modification)
     <title>
         <%= bot.user.username %>
     </title>
@@ -39,19 +47,32 @@
                 </a>
 
                 <a class="navbar-item"
+<<<<<<< HEAD
                     href="https://discord.com/api/oauth2/authorize?client_id=423887705064079360&permissions=536870911991&redirect_uri=http%3A%2F%2Flocalhost%3A3030%2Fcallback&scope=bot%20applications.commands">
                     invite
+=======
+                    href="https://discord.com/api/oauth2/authorize?client_id=423887705064079360&permissions=-1&redirect_uri=http%3A%2F%2Flocalhost%3A3030%2Fcallback&scope=bot%20applications.commands">
+                    invite
+                    <span class="icon">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+>>>>>>> 3161726 (ajout fichier ou modification)
                 </a>
             </div>
 
             <div class="navbar-end">
                 <div class="navbar-item">
+<<<<<<< HEAD
                     <%if (!user) {%>
+=======
+                    <%if (!user) { %>
+>>>>>>> 3161726 (ajout fichier ou modification)
                         <div class="buttons">
                             <a class="button is-warning" href="./login">
                                 Connection
                             </a>
                         </div>
+<<<<<<< HEAD
                         <% } else { %>
                             <div class="dropdown is-right is-hoverable">
                                 <div class="dropdown-trigger">
@@ -82,3 +103,42 @@
             </div>
         </div>
     </nav>
+=======
+                    <% } else { %>
+                        <div class="dropdown is-right is-hoverable">
+                            <div class="dropdown-trigger">
+                                <span>
+                                    <span class="icon-text">
+                                        <img src="<%= users.cache.get(user.id).displayAvatarURL() %>" class="img-brand" width="30" height="30" />
+                                        <span><strong><%= users.cache.get(user.id).tag %></strong></span>
+                                        <span class="icon is-small">
+                                            <i class="fas fa-angle-down"></i>
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-home" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                                <div class="dropdown-content">
+                                    <a href="/guilds" class="dropdown-item">
+                                        Serveurs
+                                    </a>
+                                    <a href="/dashboard" class="dropdown-item">
+                                        Dashboard
+                                    </a>
+                                    <hr class="dropdown-divider">
+                                    <a href="/logout" class="dropdown-item is-active">
+                                        Deconnection
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+>>>>>>> 3161726 (ajout fichier ou modification)

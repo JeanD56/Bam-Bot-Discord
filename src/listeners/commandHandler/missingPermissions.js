@@ -9,6 +9,7 @@ class MissingPermissionsListner extends Listener {
     }
 
     async exec(message, command, type, missing) {
+<<<<<<< HEAD
         if(type == 'client'){
             return message.reply({
                 content: `je n'ai pas actuellement le(s) droit(s) me permetant d'executer cette command **[${command.id}]**\nil me manque actuellement ce(s) droit(s):\n\`\`\`${missing}\`\`\``
@@ -17,6 +18,20 @@ class MissingPermissionsListner extends Listener {
             return message.reply({
                 content: `tu n'as pas actuellement le(s) droit(s) me permetant d'executer cette command **[${command.id}]**\nil te manque actuellement ce(s) droit(s):\n\`\`\`${missing}\`\`\``
             })
+=======
+        try {
+            if(type == 'client'){
+                return message.reply({
+                    content: `je n'ai pas actuellement le(s) droit(s) me permetant d'executer cette command **[${command.id}]**\nil me manque actuellement ce(s) droit(s):\n\`\`\`${missing}\`\`\``
+                })
+            }else{
+                return message.reply({
+                    content: `tu n'as pas actuellement le(s) droit(s) me permetant d'executer cette command **[${command.id}]**\nil te manque actuellement ce(s) droit(s):\n\`\`\`${missing}\`\`\``
+                })
+            }
+        } catch (error) {
+            console.log(error);
+>>>>>>> 3161726 (ajout fichier ou modification)
         }
     }
 }
