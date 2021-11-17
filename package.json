@@ -4,7 +4,7 @@
   "description": "Bot Discord",
   "main": "src/index.js",
   "scripts": {
-    "test": "node .",
+    "start": "node .",
     "nodemon": "nodemon ."
   },
   "author": "JEAN",
