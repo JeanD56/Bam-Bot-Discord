@@ -18,7 +18,7 @@ class HelpCommand extends Command {
     async exec(message, args) {
         try {
             const moderationDB = this.client.moderation.get();
-            let GitHubLink = "https://www.github.com/"
+            let GitHubLink = "https://github.com/JeanD56"
             if(moderationDB.GitHubLink) GitHubLink = moderationDB.GitHubLink;
             let row = new MessageActionRow().addComponents(
                 new MessageButton()
