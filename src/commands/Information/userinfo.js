@@ -62,9 +62,11 @@ class UserInfoCommand extends Command {
         user = user + `\n**❯❯ Device:** ${await mbr.then(
             m => {
                 let devices = [];
-                if (m.presence?.clientStatus.mobile === ("online" || "idle" || "dnd" || "offline")) devices.push("📱");
-                if (m.presence?.clientStatus.desktop === ("online" || "idle" || "dnd" || "offline")) devices.push("💻");
-                if (m.presence?.clientStatus.web === ("online" || "idle" || "dnd" || "offline")) devices.push("🌐");
+                if (!m.user.bot) {
+                    if (m.presence?.clientStatus.mobile === ("online" || "idle" || "dnd" || "offline")) devices.push("📱");
+                    if (m.presence?.clientStatus.desktop === ("online" || "idle" || "dnd" || "offline")) devices.push("💻");
+                    if (m.presence?.clientStatus.web === ("online" || "idle" || "dnd" || "offline")) devices.push("🌐");
+                } else { devices.push("🤖") }
                 return devices.join(', ')
             }
         )}`;
