@@ -4,11 +4,8 @@
   "description": "Bot Discord",
   "main": "src/index.js",
   "scripts": {
-    "start": "node .",
+    "test": "node .",
     "nodemon": "nodemon ."
-  },
-  "engines": {
-    "node": "16.x"
   },
   "author": "JEAN",
   "license": "MIT",
