@@ -42,12 +42,15 @@ class ConvertToFieldCommand extends Command {
                     //autoArchiveDuration: 4320,
                     reason: "Reason",
                 }).then( threadBot => {
-                    let i = 0;
-                    Messages.reverse().forEach(m => {
-                        threadBot.send(`<@!${m.member.id}> ${moment(m.createdAt).format("_h:mm:ss a_")} :\n${m.content}`).then(_ => {
+                    let i = -1;
+                    let ReverseMessage = Messages.reverse()
+                    ReverseMessage.forEach(async m => {
+                        while(i != ReverseMessage.indexOf(m)){
+                            await threadBot.send(`<@!${m.member.id}>\t${moment(m.createdAt).format("_h:mm:ss a_")} :\n${m.content}`).then(_ => {
+                            });
                             i++;
-                            if(Messages.length == i) return messageBot.edit("Archiver !");
-                        });
+                            if(Messages.length == i+1) return messageBot.edit("Archiver !");
+                        }
                     });
                 });
             });
