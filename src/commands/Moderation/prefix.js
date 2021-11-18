@@ -20,7 +20,7 @@ class PrefixCommand extends Command {
     async exec(message, args) {
         let Vprefix = await this.handler.prefix(message)
         if (!args.newPrefix) return message.channel.send(`\`\`Prefix actuel   ->   ${Vprefix}\`\``)
-        await this.client.guildSettings.update(message.guild, { prefix: args.newPrefix });
+        await this.client.guildSettings.update(message.guild, { settings: { prefix: args.newPrefix } });
 
         return message.channel.send({
             content: `Le prefix est passé de:\n \`\`${Vprefix}\`\`   ->   \`\`${args.newPrefix}\`\``
