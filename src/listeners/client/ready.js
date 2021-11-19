@@ -64,21 +64,26 @@ class ReadyListner extends Listener {
                 let guilds = this.client.guilds.cache;
                 guilds.forEach(async g => {
                     let guildDB = await this.client.guildSettings.get(g);
-                    if (guildDB.anniversaire) {
-                        guildDB.anniversaire.forEach(anniv => {
+                    if (guildDB.anniversaires) {
+                        guildDB.anniversaires.forEach(anniv => {
                             const jour = moment().format('ll').split(" ")[0];
-                            const mois = moment().format('ll').split(" ")[1].replace(".", "");
-                            if (anniv == moment().format('ll')) {
+                            const lendemain = moment().add(1, 'days').format('ll').split(" ")[0].toLowerCase();
+                            const mois = moment().format('ll').split(" ")[1].replace(".", "").toLowerCase();
+                            if (anniv.date == jour + " " + mois) {
                                 let name = this.client.guilds.cache.get(g.id)
                                     .members.cache.get(anniv.id).displayName;
+
                                 this.client.guilds.cache.get(g.id)
                                     .members.cache.get(anniv.id).edit({ nick: name + " 🎂" });
-                                guildDB.anniversaire.channels.forEach(c => {
-                                    this.client.channels.cache.get(c).send(`c'est actuellement l'anniversaire de \`\`${this.client.guilds.cache.get(g.id).members.cache.get(anniv.id).displayName}\`\`\n faites lui de gros poutoux`);
+
+                                console.log(guildDB.anniversaires);
+                                anniv.channels.forEach(c => {
+                                    this.client.channels.cache.get(c).send(`c'est actuellement l'anniversaire de <@${anniv.id}>\n faites lui de gros poutoux`);
                                 });
-                            } else if (anniv == moment().add(1, 'days').format('ll')) {
+                            } else if (anniv.date == lendemain + " " + mois) {
                                 let name = this.client.guilds.cache.get(g.id)
                                     .members.cache.get(anniv.id).displayName;
+
                                 name = name.split('🎂');
                                 this.client.guilds.cache.get(g.id)
                                     .members.cache.get(anniv.id).edit({ nick: name[0] });
