@@ -20,6 +20,11 @@ const guildSchema = Schema({
         name: String,
     }],
     joinedAt: Date,
+    anniversaire: [{
+        id: String,
+        date: Date,
+        channels: [String]
+    }],
     settings: {
         prefix: { type: String, default: defaultPrefix },
         log: {

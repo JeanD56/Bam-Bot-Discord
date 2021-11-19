@@ -1,4 +1,5 @@
 const { ListenerHandler, Listener } = require('discord-akairo');
+const moment = require('moment')
 
 class ReadyListner extends Listener {
     constructor() {
@@ -21,7 +22,7 @@ class ReadyListner extends Listener {
 
         console.log("Je suis pret !");
 
-        let i = 0; let status = [""]; let cooldown = 1000*60;
+        let i = 0; let status = [""]; let cooldown = 1000 * 60;
         setInterval(async _ => {
             const moderation = await this.client.moderation.get();
             status = moderation.status;
@@ -39,7 +40,7 @@ class ReadyListner extends Listener {
                 if (status[i].type.match(/^(PLAYING|STREAMING|LISTENING|WATCHING|CUSTOM|COMPETING)$/)) typeActivties = status[i].type;
 
                 let urlActivties = status[i].url;
-                if(!urlActivties) urlActivties = "https://github.com/JeanD56/Bam-Bot-Discord";
+                if (!urlActivties) urlActivties = "https://github.com/JeanD56/Bam-Bot-Discord";
 
                 let statusActivities = "idle";
                 if (status[i].status.match(/^(online|idle|dnd|invisible)$/)) statusActivities = status[i].status;
@@ -56,6 +57,37 @@ class ReadyListner extends Listener {
                 i++;
             }
         }, cooldown);
+
+        setInterval(async _ => {
+            moment.locale("fr")
+            if (moment().format('LTS') == '00:00:00') {
+                let guilds = this.client.guilds.cache;
+                guilds.forEach(async g => {
+                    let guildDB = await this.client.guildSettings.get(g);
+                    if (guildDB.anniversaire) {
+                        guildDB.anniversaire.forEach(anniv => {
+                            const jour = moment().format('ll').split(" ")[0];
+                            const mois = moment().format('ll').split(" ")[1].replace(".", "");
+                            if (anniv == moment().format('ll')) {
+                                let name = this.client.guilds.cache.get(g.id)
+                                    .members.cache.get(anniv.id).displayName;
+                                this.client.guilds.cache.get(g.id)
+                                    .members.cache.get(anniv.id).edit({ nick: name + " 🎂" });
+                                guildDB.anniversaire.channels.forEach(c => {
+                                    this.client.channels.cache.get(c).send(`c'est actuellement l'anniversaire de \`\`${this.client.guilds.cache.get(g.id).members.cache.get(anniv.id).displayName}\`\`\n faites lui de gros poutoux`);
+                                });
+                            } else if (anniv == moment().add(1, 'days').format('ll')) {
+                                let name = this.client.guilds.cache.get(g.id)
+                                    .members.cache.get(anniv.id).displayName;
+                                name = name.split('🎂');
+                                this.client.guilds.cache.get(g.id)
+                                    .members.cache.get(anniv.id).edit({ nick: name[0] });
+                            }
+                        });
+                    }
+                });
+            }
+        }, 1000);
 
     }
 }
