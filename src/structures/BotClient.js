@@ -3,9 +3,6 @@ const { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } = requ
 const mongoose = require('mongoose');
 const { GuildsProvider, UserProvider, ModerationProvider } = require('./Provider');
 const { stripIndents } = require('common-tags');
-const ConfigU = require('../../Utils/config.js');
-
-
 
 
 module.exports = class BotClient extends AkairoClient {
