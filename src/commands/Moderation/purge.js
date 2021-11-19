@@ -29,7 +29,7 @@ class PurgeCommand extends Command {
                 channel.delete();
                 return newChannel.send('le channel est desormais purgé VIVE LA PURGE !!!!!');
             }
-            if (nombre > 99) nombre = 99;
+            if (nombre > 99);// nombre = 99;
             const messages = message.channel.messages.fetch();
             const filtered = [];
             let i = 0;
@@ -48,7 +48,7 @@ class PurgeCommand extends Command {
             } else {
                 (await messages).filter(m => {
                     if (Date.now() - m.createdTimestamp < ms("14 jours")) {
-                        if (m.id !== message.id && nombre > 1 && i < nombre) {
+                        if (m.id != message.id && nombre > 1 && i < nombre) {
                             filtered.push(m);
                             i++;
                         }

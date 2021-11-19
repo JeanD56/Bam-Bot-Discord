@@ -20,9 +20,9 @@ const guildSchema = Schema({
         name: String,
     }],
     joinedAt: Date,
-    anniversaire: [{
+    anniversaires: [{
         id: String,
-        date: Date,
+        date: String,
         channels: [String]
     }],
     settings: {

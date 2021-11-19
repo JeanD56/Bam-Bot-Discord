@@ -100,7 +100,6 @@ class BlacklistCommand extends Command {
             }
         }
         if (/[^0-9]$/i.test(parseInt(idToBlacklist))) return message.channel.send(`l'ID doit etre un nombre.`);
-        console.log(idToBlacklist);
 
         if (action == "ADD") {
             targetToBlacklist.push(idToBlacklist);

@@ -49,8 +49,7 @@ class ConvertToFieldCommand extends Command {
                     let ReverseMessage = Messages.reverse()
                     ReverseMessage.forEach(async m => {
                         while (i != ReverseMessage.indexOf(m)) {
-                            await threadBot.send(`<@!${m.member.id}>\t${moment(m.createdAt).format("_h:mm:ss a_")} :\n${m.content}`).then(_ => {
-                            });
+                            await threadBot.send(`<@!${m.member.id}>\t${moment(m.createdAt).format("_h:mm:ss a_")} :\n${m.content}`).then(_ => {});
                             this.client.channels.cache.get(message.channel.id).messages.cache.get(m.id).delete();
                             i++;
                             if (Messages.length == i + 1) messageBot.edit("Archiver !");
