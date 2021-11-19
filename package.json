@@ -4,8 +4,7 @@
   "description": "Bot Discord",
   "main": "src/index.js",
   "scripts": {
-    "start": "node .",
-    "build": "npm start"
+    "start": "node ."
   },
   "engines": {
     "node": "16.x",
