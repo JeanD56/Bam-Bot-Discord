@@ -8,10 +8,6 @@ const { Moderation } = require('./Models');
 const MemoryStore = require('memorystore')(session);
 
 module.exports = async client => {
-    const moderationDB = await Moderation.findOne({ id: 1 });
-    if (moderationDB) {
-        const config = moderationDB.dashboard;
-
         const dashboardDirectory = path.resolve(
             `${process.cwd()}${path.sep}dashboard`
         );
@@ -34,9 +30,9 @@ module.exports = async client => {
 
         passport.use(
             new Strategy({
-                clientID: config.dashboard.clientID,
-                clientSecret: config.dashboard.oauthSecret,
-                callbackURL: config.dashboard.callbackurl,
+                clientID: process.env.ClientID,
+                clientSecret: process.env.DOauthSecret,
+                callbackURL: process.env.LIEN+"/callback",
                 scope: ["identify", "guilds"]
             },
                 (accessToken, refeshToken, profile, done) => {
@@ -48,7 +44,7 @@ module.exports = async client => {
         dashboard.use(
             session({
                 store: new MemoryStore({ checkPeriod: 9999999 }),
-                secret: config.dashboard.secret,
+                secret: process.env.DSecret,
                 resave: false,
                 saveUninitialized: false
             })
@@ -109,6 +105,5 @@ module.exports = async client => {
             renderTemplate(res, req, "guilds.ejs");
         });
 
-        dashboard.listen(config.dashboard.port);
-    }
+        dashboard.listen(process.env.PORT);
 }

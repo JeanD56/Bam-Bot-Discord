@@ -112,6 +112,7 @@ module.exports = class BotClient extends AkairoClient {
         Event      -> ${this.ListenerHandler.modules.size}
         Inhibiteur -> ${this.inhibitorHandler.modules.size}
         `);
+        app.listen(process.env.PORT, '0.0.0.0', );
     }
 
     async start(TOKEN, MONGOOSTRING) {
