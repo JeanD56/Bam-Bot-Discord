@@ -17,8 +17,8 @@ class ReadyListner extends Listener {
 
         await CreateModerationDB(this.client);
 
-        // require('../../structures/dashboard')(this.client);
-        // console.log('Contruction du Dashboard');
+        require('../../structures/dashboard')(this.client);
+        console.log('Contruction du Dashboard');
 
         console.log("Je suis pret !");
 
