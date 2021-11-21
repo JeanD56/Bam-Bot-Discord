@@ -14,6 +14,10 @@ module.exports = async client => {
         const templatesDirectory = path.resolve(
             `${dashboardDirectory}${path.sep}templates`
         );
+
+        dashboard.set('port', (process.env.PORT || 3030));
+        dashboard.set('url', (process.env.LINK || "0.0.0.0"));
+
         dashboard.use(
             "/public",
             express.static(path.resolve(
@@ -32,7 +36,7 @@ module.exports = async client => {
             new Strategy({
                 clientID: process.env.ClientID,
                 clientSecret: process.env.DOauthSecret,
-                callbackURL: process.env.LINK + "/callback",
+                callbackURL: process.env.CallBack,
                 scope: ["identify", "guilds"]
             },
                 (accessToken, refeshToken, profile, done) => {
@@ -41,12 +45,9 @@ module.exports = async client => {
             )
         );
 
-        dashboard.set('port', (process.env.PORT || 3030));
-        dashboard.set('url', (process.env.LINK || "0.0.0.0"))
-
         dashboard.use(
             session({
-                store: new MemoryStore({ checkPeriod: 9999999 }),
+                store: new MemoryStore({ checkPeriod: 99999 }),
                 secret: process.env.DSecret,
                 resave: false,
                 saveUninitialized: false
@@ -108,10 +109,14 @@ module.exports = async client => {
             renderTemplate(res, req, "guilds.ejs");
         });
 
+        dashboard.get("/404", (req, res) => {
+            renderTemplate(res, req, "404.ejs");
+        });
+
         client.site = dashboard.listen(dashboard.get('port'), dashboard.get('url'), _ => {
             console.log(stripIndents`Dashboard Connecter:
-                port: ${dashboard.get('port')}
                 url: ${dashboard.get('url')}
+                port: ${dashboard.get('port')}
             `); 
         });
 }
