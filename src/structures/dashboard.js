@@ -41,6 +41,9 @@ module.exports = async client => {
             )
         );
 
+        
+        dashboard.set('port', (process.env.PORT || 3030));
+
         dashboard.use(
             session({
                 store: new MemoryStore({ checkPeriod: 9999999 }),
@@ -109,7 +112,7 @@ module.exports = async client => {
         //console.log(`Le Dashboard est démarer sur le port => ${process.env.PORT}`)
         //});
 
-        dashboard.listen({ port: process.env.PORT || 3030 }, ({url, port}) => {
-            console.log(`Dashboard Connecter:\n\tport: ${port}\n\turl: ${url}`); 
+        dashboard.listen(dashboard.get('port'), _ => {
+            console.log(`Dashboard Connecter:\n\tport: ${dashboard.get('port')}\n\turl: ${dashboard.get('url')}`); 
         });
 }
