@@ -32,7 +32,7 @@ module.exports = async client => {
             new Strategy({
                 clientID: process.env.ClientID,
                 clientSecret: process.env.DOauthSecret,
-                callbackURL: process.env.LIEN+"/callback",
+                callbackURL: process.env.LINK + "/callback",
                 scope: ["identify", "guilds"]
             },
                 (accessToken, refeshToken, profile, done) => {
