@@ -4,7 +4,7 @@ const path = require('path');
 const passport = require('passport');
 const Strategy = require('passport-discord').Strategy;
 const session = require('express-session');
-const { Moderation } = require('./Models');
+const { stripIndents } = require('common-tags');
 const MemoryStore = require('memorystore')(session);
 
 module.exports = async client => {
