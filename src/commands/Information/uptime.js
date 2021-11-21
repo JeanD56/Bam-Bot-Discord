@@ -19,7 +19,7 @@ class UptimeCommand extends Command {
 
         const embed = this.client.functions.embed(message, this.client)
             .setTitle("**Uptime**")
-            .addField('depuis: ', `${moment(timeStamp).format("Do MMMM YYYY, h:mm:ss a")}`, true);
+            .addField('depuis: ', `${moment(timeStamp).format("Do MMMM YYYY, hh:mm:ss")}`, true);
 
         return message.reply({
             embeds: [embed]
