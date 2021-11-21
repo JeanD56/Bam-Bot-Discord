@@ -105,5 +105,5 @@ module.exports = async client => {
             renderTemplate(res, req, "guilds.ejs");
         });
 
-        dashboard.listen(process.env.PORT);
+        dashboard.listen(process.env.PORT || 5000);
 }
