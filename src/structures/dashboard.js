@@ -105,9 +105,11 @@ module.exports = async client => {
             renderTemplate(res, req, "guilds.ejs");
         });
 
-        dashboard.listen(process.env.PORT || 3030, _ => {
-            console.log(`Le Dashboard est démarer sur le port => ${process.env.PORT}`)
-        });
+        //dashboard.listen(process.env.PORT || 3030, _ => {
+        //console.log(`Le Dashboard est démarer sur le port => ${process.env.PORT}`)
+        //});
 
-        dashboard.listen({ port: process.env.PORT || 3030 }).then(({ url }) => { > console.log(`Server ready at ${url}`); });
+        dashboard.listen({ port: process.env.PORT || 3030 }).then(({ url, port }) => {
+            console.log(`Dashboard Connecter:\n\tport: ${port}\n\t${url}`); 
+        });
 }
