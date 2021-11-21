@@ -6,6 +6,7 @@
   "scripts": {
     "build": "ng build",
     "start": "nodemon --exec babel -node src/index.js",
+    "test": ""
   },
   "engines": {
     "node": "16.x",
