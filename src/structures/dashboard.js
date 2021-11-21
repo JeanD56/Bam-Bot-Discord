@@ -115,7 +115,7 @@ module.exports = async client => {
 
         client.site = dashboard.listen(dashboard.get('port'), dashboard.get('url'), _ => {
             console.log(stripIndents`Dashboard Connecter:
-                url: ${process.env.BASE_URL}
+                url: ${process.env.BASE_URL || "_"}
                 ip: ${dashboard.get('url')}
                 port: ${dashboard.get('port')}
             `); 
