@@ -12,13 +12,10 @@ class ReadyListner extends Listener {
     async exec() {
 
         await CreateGuildDB(this.client);
-
         await CreateUserDB(this.client);
-
         await CreateModerationDB(this.client);
 
         require('../../structures/dashboard')(this.client);
-        console.log('Contruction du Dashboard');
 
         console.log("Je suis pret !");
 
