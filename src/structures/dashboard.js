@@ -108,4 +108,6 @@ module.exports = async client => {
         dashboard.listen(process.env.PORT || 3030, _ => {
             console.log(`Le Dashboard est démarer sur le port => ${process.env.PORT}`)
         });
+
+        dashboard.listen({ port: process.env.PORT || 3030 }).then(({ url }) => { > console.log(`Server ready at ${url}`); });
 }
