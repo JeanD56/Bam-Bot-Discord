@@ -15,7 +15,7 @@ module.exports = async client => {
             `${dashboardDirectory}${path.sep}templates`
         );
 
-        dashboard.set('port', (process.env.PORT || 3030));
+        dashboard.set('port', (process.env.PORT || process.env.port));
         dashboard.set('url', (process.env.LINK || "0.0.0.0"));
 
         dashboard.use(
