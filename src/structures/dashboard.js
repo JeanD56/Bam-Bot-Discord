@@ -42,7 +42,7 @@ module.exports = async client => {
         );
 
         dashboard.set('port', (process.env.PORT || 3030));
-        dashboard.set('url', (process.env.URL || "0.0.0.0"))
+        dashboard.set('url', (process.env.LINK || "0.0.0.0"))
 
         dashboard.use(
             session({
@@ -108,10 +108,10 @@ module.exports = async client => {
             renderTemplate(res, req, "guilds.ejs");
         });
 
-        //dashboard.listen(process.env.PORT || 3030, _ => {
-        //console.log(`Le Dashboard est démarer sur le port => ${process.env.PORT}`)
-        //});
-        dashboard.listen(dashboard.get('port'), _ => {
-            console.log(`Dashboard Connecter:\n\tport: ${dashboard.get('port')}\n\turl: ${dashboard.get('url')}`); 
+        client.site = dashboard.listen(dashboard.get('port'), dashboard.get('url'), _ => {
+            console.log(stripIndents`Dashboard Connecter:
+                port: ${dashboard.get('port')}
+                url: ${dashboard.get('url')}
+            `); 
         });
 }
