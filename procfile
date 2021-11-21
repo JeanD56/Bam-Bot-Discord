@@ -1,3 +1,4 @@
 web:node src/index.js
+worker:node src/index.js
 heroku ps:scale web=1
 heroku maintenance:off
