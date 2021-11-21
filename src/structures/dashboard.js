@@ -109,7 +109,7 @@ module.exports = async client => {
         //console.log(`Le Dashboard est démarer sur le port => ${process.env.PORT}`)
         //});
 
-        dashboard.listen({ port: process.env.PORT || 3030 }).then(({ url, port }) => {
+        dashboard.listen({ port: process.env.PORT || 3030 }, {url, port} => {
             console.log(`Dashboard Connecter:\n\tport: ${port}\n\turl: ${url}`); 
         });
 }
