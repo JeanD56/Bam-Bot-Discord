@@ -105,5 +105,7 @@ module.exports = async client => {
             renderTemplate(res, req, "guilds.ejs");
         });
 
-        dashboard.listen(process.env.PORT || 5000);
+        dashboard.listen(process.env.PORT || 3030, _ => {
+            console.log(`Le Dashboard est démarer sur le port => ${process.env.PORT}`)
+        });
 }
