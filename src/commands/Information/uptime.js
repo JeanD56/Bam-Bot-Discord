@@ -14,6 +14,7 @@ class UptimeCommand extends Command {
     }
 
     async exec(message) {
+        moment.locale("fr");
         const timeStamp = this.client.readyTimestamp;
 
         const embed = this.client.functions.embed(message, this.client)
