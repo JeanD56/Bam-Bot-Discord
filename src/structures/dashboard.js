@@ -4,7 +4,7 @@ const path = require('path');
 const passport = require('passport');
 const Strategy = require('passport-discord').Strategy;
 const session = require('express-session');
-const { Moderation } = require('./Models');
+const { stripIndents } = require('common-tags');
 const MemoryStore = require('memorystore')(session);
 
 module.exports = async client => {
@@ -14,6 +14,10 @@ module.exports = async client => {
         const templatesDirectory = path.resolve(
             `${dashboardDirectory}${path.sep}templates`
         );
+
+        dashboard.set('port', (process.env.PORT || process.env.port));
+        dashboard.set('url', (process.env.LINK || "0.0.0.0"));
+
         dashboard.use(
             "/public",
             express.static(path.resolve(
@@ -32,7 +36,7 @@ module.exports = async client => {
             new Strategy({
                 clientID: process.env.ClientID,
                 clientSecret: process.env.DOauthSecret,
-                callbackURL: process.env.LIEN+"/callback",
+                callbackURL: process.env.CallBack,
                 scope: ["identify", "guilds"]
             },
                 (accessToken, refeshToken, profile, done) => {
@@ -43,7 +47,7 @@ module.exports = async client => {
 
         dashboard.use(
             session({
-                store: new MemoryStore({ checkPeriod: 9999999 }),
+                store: new MemoryStore({ checkPeriod: 99999 }),
                 secret: process.env.DSecret,
                 resave: false,
                 saveUninitialized: false
@@ -105,5 +109,15 @@ module.exports = async client => {
             renderTemplate(res, req, "guilds.ejs");
         });
 
-        dashboard.listen(process.env.PORT);
+        dashboard.get("/404", (req, res) => {
+            renderTemplate(res, req, "404.ejs");
+        });
+
+        client.site = dashboard.listen(dashboard.get('port'), dashboard.get('url'), _ => {
+            console.log(stripIndents`Dashboard Connecter:
+                url: ${process.env.HOST || "_"}
+                ip: ${dashboard.get('url')}
+                port: ${dashboard.get('port')}
+            `); 
+        });
 }

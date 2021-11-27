@@ -12,15 +12,12 @@ class ReadyListner extends Listener {
     async exec() {
 
         await CreateGuildDB(this.client);
-
         await CreateUserDB(this.client);
-
         await CreateModerationDB(this.client);
 
         require('../../structures/dashboard')(this.client);
-        console.log('Contruction du Dashboard');
 
-        console.log("Je suis pret !");
+        console.log(`${this.client.user.username} est desormais en ligne !`);
 
         let i = 0; let status = [""]; let cooldown = 1000 * 60;
         setInterval(async _ => {
@@ -44,7 +41,6 @@ class ReadyListner extends Listener {
 
                 let statusActivities = "idle";
                 if (status[i].status.match(/^(online|idle|dnd|invisible)$/)) statusActivities = status[i].status;
-                // console.log("\n"+ nameActivties + "\n" + typeActivties + "\n" + urlActivties + "\n" + statusActivities);
 
                 this.client.user.setPresence({
                     activities: [{

@@ -105,13 +105,11 @@ module.exports = class BotClient extends AkairoClient {
             commandHandler: this.commandHandler,
         });
         await this.commandHandler.loadAll();
+        console.log(`Cammande pret      -> ${this.commandHandler.modules.size}`);
         await this.ListenerHandler.loadAll();
+        console.log(`Listener pret      -> ${this.ListenerHandler.modules.size}`);
         await this.inhibitorHandler.loadAll();
-        console.log(stripIndents`
-        Commande   -> ${this.commandHandler.modules.size}
-        Event      -> ${this.ListenerHandler.modules.size}
-        Inhibiteur -> ${this.inhibitorHandler.modules.size}
-        `);
+        console.log(`Inhibiteur pret    -> ${this.inhibitorHandler.modules.size}`);
     }
 
     async start(TOKEN, MONGOOSTRING) {
@@ -120,11 +118,11 @@ module.exports = class BotClient extends AkairoClient {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             })
-            console.log("DB connecter");
+            console.log("DataBase connecter");
             await this.init();
             return this.login(TOKEN);
         } catch (e) {
-            console.log("DB non connecter\n", e);
+            console.log("DataBase non connecter\n", e);
         }
     }
 }
