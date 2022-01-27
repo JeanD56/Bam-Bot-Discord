@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const { GuildsProvider, UserProvider, ModerationProvider } = require('./Provider');
 const { stripIndents } = require('common-tags');
 
-
 module.exports = class BotClient extends AkairoClient {
     constructor(config = {}) {
         super(
@@ -71,12 +70,13 @@ module.exports = class BotClient extends AkairoClient {
                 if (moderationPrefix.prefixDefault) return moderationPrefix.prefixDefault;
                 return config.defaultPrefix;
             },
+            blockClient: true,
             blockBots: true,
             defaultCooldown: 2000,
             directory: './src/commands/',
             automateCategories: true,
             argumentDefaults: 'non defini',
-            autoRegisterSlashCommands: true
+            autoRegisterSlashCommands: true,
         });
 
         this.ListenerHandler = new ListenerHandler(this, {

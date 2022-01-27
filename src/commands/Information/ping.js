@@ -8,7 +8,8 @@ class PingCommand extends Command {
                 content: "mettre de tester le ping du bot",
                 usage: "",
                 exemples: [""]
-            }
+            },
+            slash: true
         });
     }
 

@@ -1,5 +1,8 @@
 const { ListenerHandler, Listener } = require('discord-akairo');
-const moment = require('moment')
+const moment = require('moment');
+const {SlashCommandBuilder} = require('@discordjs/builders')
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
 
 class ReadyListner extends Listener {
     constructor() {
@@ -16,8 +19,17 @@ class ReadyListner extends Listener {
         await CreateModerationDB(this.client);
 
         require('../../structures/dashboard')(this.client);
-
         console.log(`${this.client.user.username} est desormais en ligne !`);
+
+
+        const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
+        const commandsSlash = [
+            new SlashCommandBuilder()
+                .setName("ping")
+                .setDescription("pong")
+        ]
+        slashInit(rest, commandsSlash, this.client)
+
 
         let i = 0; let status = [""]; let cooldown = 1000 * 60;
         setInterval(async _ => {
@@ -121,3 +133,20 @@ async function CreateModerationDB(client) {
     moderationData = await client.moderation.get();
     if (!moderationData) client.moderation.create()
 }
+
+async function slashInit(rest, commands, client) {
+    try {
+        console.log('Started refreshing application (/) commands.');
+
+        client.guilds.cache.forEach(async g => {
+            await rest.put(
+                Routes.applicationGuildCommands(client.user.id, g.id),
+                { body: commands },
+            );
+        });
+
+        console.log('Successfully reloaded application (/) commands.');
+    } catch (error) {
+        console.error(error);
+    }
+};
