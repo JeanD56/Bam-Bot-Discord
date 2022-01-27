@@ -7,7 +7,7 @@ class MoveAllCommand extends Command {
             description: {
                 content: "Permet de deplacer tout les member d'un channelVocal vers un autre",
                 usage: "<#id du channelVocal>",
-                exemples: ["moveall <#186556841387446>"]
+                exemples: ["<#186556841387446>"]
             },
             args: [
                 //{ id: 'channelA', type: 'VoiceChannel', require: false },
