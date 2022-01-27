@@ -5,9 +5,9 @@ class MoveAllCommand extends Command {
         super('moveall', {
             aliases: ['moveall'],
             description: {
-                content: "Permet de kick un membre du serveur",
-                usage: "@member <raison du kick>",
-                exemples: ["kick @member Ne respect pas les règles de ce serveur."]
+                content: "Permet de deplacer tout les member d'un channelVocal vers un autre",
+                usage: "<#id du channelVocal>",
+                exemples: ["moveall <#186556841387446>"]
             },
             args: [
                 //{ id: 'channelA', type: 'VoiceChannel', require: false },
