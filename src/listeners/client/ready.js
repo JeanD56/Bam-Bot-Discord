@@ -3,6 +3,7 @@ const moment = require('moment');
 const {SlashCommandBuilder} = require('@discordjs/builders')
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
+const { VoiceChannel, BaseGuildVoiceChannel, VoiceState } = require('discord.js');
 
 class ReadyListner extends Listener {
     constructor() {
@@ -24,9 +25,13 @@ class ReadyListner extends Listener {
 
         const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
         const commandsSlash = [
+            /*new SlashCommandBuilder()
+                .setName("moveall")
+                .setDescription("pong")
+                .addChannelOption(channel => channel.setName('channel').setDescription("VoiceChannel").setRequired("true")),*/
             new SlashCommandBuilder()
                 .setName("ping")
-                .setDescription("pong")
+                .setDescription('testzetdqzd')
         ]
         slashInit(rest, commandsSlash, this.client)
 

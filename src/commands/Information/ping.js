@@ -5,7 +5,7 @@ class PingCommand extends Command {
         super('ping', {
             aliases: ['ping'],
             description: {
-                content: "mettre de tester le ping du bot",
+                content: "permet de tester le ping du bot",
                 usage: "",
                 exemples: [""]
             },
