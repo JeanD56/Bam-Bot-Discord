@@ -77,8 +77,7 @@ module.exports = class BotClient extends AkairoClient {
             directory: './src/commands/',
             automateCategories: true,
             argumentDefaults: 'non defini',
-            autoRegisterSlashCommands: true,
-            execSlash: false
+            autoRegisterSlashCommands: true
         });
 
         this.ListenerHandler = new ListenerHandler(this, {
@@ -88,7 +87,6 @@ module.exports = class BotClient extends AkairoClient {
         this.inhibitorHandler = new InhibitorHandler(this, {
             directory: './src/inhibitors/',
             automateCategories: true,
-
         })
 
         this.functions = {

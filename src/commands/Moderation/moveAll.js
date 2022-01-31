@@ -16,7 +16,19 @@ class MoveAllCommand extends Command {
             ],
             userPermissions: ['KICK_MEMBERS'],
             clientPermissions: ['KICK_MEMBERS'],
-            slash: true
+            slash: true,
+            /*slashOptions: [
+                {
+                    name: 'channelB',
+                    type: 'CHANNEL',
+                    required: true,
+                    description:'<>'
+                }, {
+                    name: 'reason',
+                    type: 'STRING',
+                    description: "<>"
+                }
+            ]*/
         });
     }
     async exec(message, { channelB, reason }) {

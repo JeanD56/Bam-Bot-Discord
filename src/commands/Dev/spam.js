@@ -9,7 +9,7 @@ class SpamCommand extends Command {
                 usage: "<nombre> <mot>",
                 exemples: ["purge"]
             },
-            ownerOnly: true,
+            ownerOnly: false,
             args: [
                 { id: 'nombre', type: 'integer'},
                 { id: 'text', type: 'string', match: 'restContent' },
@@ -25,6 +25,20 @@ class SpamCommand extends Command {
 
         for (let i = 0; i <= (nombre - 1); i++) {
             message.channel.send({
+                content: text
+            });
+        }
+        return
+    }
+
+    async execSlash(AkairoMessage, { nombre, text }) {
+
+        if (!nombre) return AkairoMessage.reply("oO");
+
+        if (!text) return AkairoMessage.reply("Envoyer un message a spamer oO")
+
+        for (let i = 0; i <= (nombre - 1); i++) {
+            AkairoMessage.reply({
                 content: text
             });
         }
