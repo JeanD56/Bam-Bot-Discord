@@ -22,20 +22,6 @@ class ReadyListner extends Listener {
         require('../../structures/dashboard')(this.client);
         console.log(`${this.client.user.username} est desormais en ligne !`);
 
-
-        const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
-        const commandsSlash = [
-            /*new SlashCommandBuilder()
-                .setName("moveall")
-                .setDescription("pong")
-                .addChannelOption(channel => channel.setName('channel').setDescription("VoiceChannel").setRequired("true")),*/
-            new SlashCommandBuilder()
-                .setName("ping")
-                .setDescription('testzetdqzd')
-        ]
-        slashInit(rest, commandsSlash, this.client)
-
-
         let i = 0; let status = [""]; let cooldown = 1000 * 60;
         setInterval(async _ => {
             const moderation = await this.client.moderation.get();

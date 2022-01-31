@@ -1,11 +1,11 @@
-const { Command } = require('discord-akairo');
+const { AkairoMessage, Command } = require('discord-akairo');
 
 class DeCommand extends Command {
     constructor() {
         super('de', {
             aliases: ['de'],
             description: {
-                content: "",
+                content: "oui",
                 usage: "(nombre face, par defaut 6)",
                 exemples: ["", "24"]
             },
@@ -13,9 +13,23 @@ class DeCommand extends Command {
                 id: 'faces',
                 type: 'integer',
                 default: 6
-            }]
+            }],
+            slash: true,
+            slashOptions: [
+                {
+                    name: "faces",
+                    type: "STRING",
+                    description: "permet de mettre autre chose que 6",
+                    required: false
+                }
+            ]
         });
     }
+
+/**
+ * @param {Message | AkairoMessage} message
+ */
+
 
     async exec(message, { faces }) {
 

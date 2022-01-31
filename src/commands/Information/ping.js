@@ -1,4 +1,4 @@
-const { Command } = require('discord-akairo');
+const { AkairoMessage, Command } = require('discord-akairo');
 
 class PingCommand extends Command {
     constructor(){
@@ -12,6 +12,10 @@ class PingCommand extends Command {
             slash: true
         });
     }
+
+/**
+ * @param {Message | AkairoMessage} message
+ */
 
     async exec(message) {
 
