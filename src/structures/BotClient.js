@@ -1,5 +1,6 @@
 const f = require('../util/function');
 const { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } = require('discord-akairo');
+const { Intents, Message, MessageEmbed } = require("discord.js");
 const mongoose = require('mongoose');
 const { GuildsProvider, UserProvider, ModerationProvider } = require('./Provider');
 const { stripIndents } = require('common-tags');
@@ -77,6 +78,7 @@ module.exports = class BotClient extends AkairoClient {
             automateCategories: true,
             argumentDefaults: 'non defini',
             autoRegisterSlashCommands: true,
+            execSlash: true
         });
 
         this.ListenerHandler = new ListenerHandler(this, {
