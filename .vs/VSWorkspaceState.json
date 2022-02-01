@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\commands",
+    "\\src\\commands\\Dev",
+    "\\src\\commands\\Moderation",
+    "\\src\\listeners",
+    "\\src\\listeners\\client",
+    "\\src\\listeners\\commandHandler",
+    "\\src\\structures"
+  ],
+  "SelectedNode": "\\src\\commands\\Dev\\slash.js",
+  "PreviewInSolutionExplorer": false
+}
