@@ -11,9 +11,9 @@ class MessageCreateListner extends Listener {
 
     async exec(message) {
         if(message.tts){
-            return message.reply({
+            /*return message.reply({
                 content: "https://media.tenor.co/videos/9dba6101a1bb0e74dc641bfa9f19e8bb/mp4"
-            })
+            })*/
         }
     }
 }
