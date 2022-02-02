@@ -30,7 +30,7 @@ class SlashCommand extends Command {
                     name: "channel",
                     type: "CHANNEL",
                     channelTypes: ["GUILD_STAGE_VOICE", "GUILD_VOICE"],
-                    description: "<>>>>>>"
+                    description: "permet de testé"
                 }
             ]
         });
