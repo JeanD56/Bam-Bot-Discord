@@ -1,27 +1,52 @@
-const { Listener } = require("discord-akairo");
-const { Interaction, MessageActionRow, MessageButton } = require("discord.js");
+const { Command, AkairoMessage } = require('discord-akairo');
+const { Message } = require('discord.js');
+const { Guild } = require('../../structures/Models');
 
-class interactionCreate extends Listener {
-  constructor() {
-    super("interactionCreate", {
-      emitter: "client",
-      event: "interactionCreate",
-      category: "client",
-    });
-  }
-
-  async exec(interaction) {
-    if (!interaction.isCommand()) return;
-
-    if (interaction.commandName === "ping") {
-      const row = new MessageActionRow().addComponents(
-        new MessageButton()
-          .setCustomId("primary")
-          .setLabel("Primary")
-          .setStyle("PRIMARY")
-      );
-
-      await interaction.reply({ content: "Pong!", components: [row] });
+class SlashCommand extends Command {
+    constructor() {
+        super('slash', {
+            aliases: ['slash'],
+            ownerOnly: true,
+            args: [{
+                id: "txt",
+                type: "String"
+            }],
+            slash: true,
+            slashOnly: false,
+            slashOptions: [
+                {
+                    name: "txt",
+                    type: "STRING",
+                    description: "permet de testé"
+                }, {
+                    name: "member",
+                    type: "USER",
+                    description: "permet de testé"
+                },{
+                    name: "bool",
+                    type: "BOOLEAN",
+                    description: "permet de testé"
+                }, {
+                    name: "channel",
+                    type: "CHANNEL",
+                    channelTypes: ["GUILD_STAGE_VOICE", "GUILD_VOICE"],
+                    description: "<>>>>>>"
+                }
+            ]
+        });
     }
-  }
+
+    /**
+     * @param {Message | AkairoMessage} message
+     * @param {any} args
+     */
+
+    async exec(message) {
+        /////////////////////////* https://github.com/NotEnoughUpdates/discord-akairo/wiki/updates *////////////////////////
+        if (!message.util.isSlash) return await message.reply('chibre');
+        if (message.util.isSlash) return await message.interaction.reply('penis');
+        
+    }
 }
+
+module.exports = SlashCommand;

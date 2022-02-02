@@ -12,26 +12,17 @@ class TestCommand extends Command {
                 type: "String"
             }],
             slash: true,
-            slashOptions: [{
-                name: "txt",
-                type: "STRING",
-                description: "permet de testé"
-            }]
+            slashOptions: []
         });
     }
 
     /**
-     * 
      * @param {Message | AkairoMessage} message
      * @param {any} args
      */
 
     async exec(message) {
-        /////////////////////////* https://github.com/NotEnoughUpdates/discord-akairo/wiki/updates *////////////////////////
-        console.log("yoo");
-        if (message.util.isSlash) await (message === AkairoMessage).interaction.deferReply();
-        message.channel.send("coucou");
-        message.until.reply("oui !!!");
+        
     }
 }
 
