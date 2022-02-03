@@ -10,19 +10,18 @@ class TestCommand extends Command {
             args: [{
                 id: "txt",
                 type: "String"
-            }],
-            slash: true,
-            slashOptions: []
+            }]
         });
     }
 
     /**
      * @param {Message | AkairoMessage} message
      * @param {any} args
+     * @param {args.txt} txt
      */
 
-    async exec(message) {
-        
+    async exec(message, { txt }) {
+        return message.reply(txt)
     }
 }
 

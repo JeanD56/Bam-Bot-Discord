@@ -124,20 +124,3 @@ async function CreateModerationDB(client) {
     moderationData = await client.moderation.get();
     if (!moderationData) client.moderation.create()
 }
-
-async function slashInit(rest, commands, client) {
-    try {
-        console.log('Started refreshing application (/) commands.');
-
-        client.guilds.cache.forEach(async g => {
-            await rest.put(
-                Routes.applicationGuildCommands(client.user.id, g.id),
-                { body: commands },
-            );
-        });
-
-        console.log('Successfully reloaded application (/) commands.');
-    } catch (error) {
-        console.error(error);
-    }
-};
