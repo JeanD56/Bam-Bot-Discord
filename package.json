@@ -16,6 +16,7 @@
   "author": "JEAN",
   "license": "MIT",
   "dependencies": {
+    "@discordjs/rest": "^0.3.0",
     "body-parser": "^1.19.0",
     "canvas": "^2.8.0",
     "common-tags": "^1.8.0",

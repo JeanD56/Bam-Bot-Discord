@@ -6,6 +6,7 @@ class SlashCommand extends Command {
     constructor() {
         super('slash', {
             aliases: ['slash'],
+            description: "qzedqzd",
             ownerOnly: true,
             args: [{
                 id: "txt",
@@ -41,7 +42,7 @@ class SlashCommand extends Command {
      * @param {any} args
      */
 
-    async exec(message) {
+    async exec(message, args) {
         /////////////////////////* https://github.com/NotEnoughUpdates/discord-akairo/wiki/updates *////////////////////////
         if (!message.util.isSlash) return await message.reply('chibre');
         if (message.util.isSlash) return await message.interaction.reply('penis');
