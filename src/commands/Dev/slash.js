@@ -12,7 +12,7 @@ class SlashCommand extends Command {
                 id: "txt",
                 type: "String"
             }],
-            slash: true,
+            /*slash: true,
             slashOnly: false,
             slashOptions: [
                 {
@@ -33,7 +33,7 @@ class SlashCommand extends Command {
                     channelTypes: ["GUILD_STAGE_VOICE", "GUILD_VOICE"],
                     description: "permet de testé"
                 }
-            ]
+            ]*/
         });
     }
 
