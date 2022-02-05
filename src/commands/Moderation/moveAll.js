@@ -11,8 +11,7 @@ class MoveAllCommand extends Command {
                 exemples: ["<#186556841387446>"]
             },
             args: [
-                //{ id: 'channelA', type: 'channel', require: false },
-                { id: 'channelb', type: 'channel', require: true },
+                { id: 'destination', type: 'channel', require: true },
                 { id: 'reason', type: 'String' }
             ],
             userPermissions: ['KICK_MEMBERS'],
@@ -20,24 +19,13 @@ class MoveAllCommand extends Command {
             slash: true,
             slashOnly: true,
             slashOptions: [
-                /*{
-                    name: 'channela',
-                    type: 'CHANNEL',
-                    channelTypes: ["GUILD_STAGE_VOICE", "GUILD_VOICE"],
-                    required: false,
-                    description: '<>'
-                },*/{
-                    name: 'channel Destination',
+                {
+                    name: 'destination',
                     type: 'CHANNEL',
                     channelTypes: ["GUILD_STAGE_VOICE", "GUILD_VOICE"],
                     required: true,
                     description:'<>'
-                }/*,{
-                    name: 'membre',
-                    type: 'USER',
-                    required: false,
-                    description: '<>'
-                }*/, {
+                }, {
                     name: 'raison',
                     type: 'STRING',
                     required: false,
@@ -55,7 +43,7 @@ class MoveAllCommand extends Command {
 
     async execSlash(message, args) {
         let channel_depart = message.guild.members.cache.get(message.author.id).voice.channel;
-        let channel_destination = this.client.guilds.cache.get(message.guild.id).channels.cache.get(args.channelb);
+        let channel_destination = this.client.guilds.cache.get(message.guild.id).channels.cache.get(args.destination);
         let nbMembre = 0;
         channel_depart.members.each(async m => {
             await m.voice.setChannel(channel_destination.id, `${!args.reason ? `pas de raison en particulier` : args.reason}`);
