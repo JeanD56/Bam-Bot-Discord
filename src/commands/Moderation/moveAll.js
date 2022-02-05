@@ -1,4 +1,5 @@
-const { Command } = require('discord-akairo');
+const { Command, AkairoMessage } = require('discord-akairo');
+const { Message, VoiceChannel } = require('discord.js');
 
 class MoveAllCommand extends Command {
     constructor() {
@@ -10,23 +11,57 @@ class MoveAllCommand extends Command {
                 exemples: ["<#186556841387446>"]
             },
             args: [
-                //{ id: 'channelA', type: 'VoiceChannel', require: false },
-                { id: 'channelB', type: 'channel', require: true },
+                //{ id: 'channelA', type: 'channel', require: false },
+                { id: 'channelb', type: 'channel', require: true },
                 { id: 'reason', type: 'String' }
             ],
             userPermissions: ['KICK_MEMBERS'],
-            clientPermissions: ['KICK_MEMBERS']
+            clientPermissions: ['KICK_MEMBERS'],
+            slash: true,
+            slashOnly: true,
+            slashOptions: [
+                /*{
+                    name: 'channela',
+                    type: 'CHANNEL',
+                    channelTypes: ["GUILD_STAGE_VOICE", "GUILD_VOICE"],
+                    required: false,
+                    description: '<>'
+                },*/{
+                    name: 'channel Destination',
+                    type: 'CHANNEL',
+                    channelTypes: ["GUILD_STAGE_VOICE", "GUILD_VOICE"],
+                    required: true,
+                    description:'<>'
+                }/*,{
+                    name: 'membre',
+                    type: 'USER',
+                    required: false,
+                    description: '<>'
+                }*/, {
+                    name: 'raison',
+                    type: 'STRING',
+                    required: false,
+                    description: "<>"
+                }
+            ]
         });
     }
-    async exec(message, { channelB, reason }) {
-        if (channelB.type !== "GUILD_VOICE" && channelB.type != "GUILD_STAGE_VOICE") return message.reply("le channel qui a été ping n'est pas un channel Vocal");
+
+    /**
+     * 
+     * @param {Message | AkairoMessage} message
+     * @param {any} args
+     */
+
+    async execSlash(message, args) {
         let channel_depart = message.guild.members.cache.get(message.author.id).voice.channel;
+        let channel_destination = this.client.guilds.cache.get(message.guild.id).channels.cache.get(args.channelb);
         let nbMembre = 0;
-        this.client.guilds.cache.get(message.guild.id).channels.cache.get(channel_depart.id).members.each(m => {
-            m.voice.setChannel(channelB.id, reason);
+        channel_depart.members.each(async m => {
+            await m.voice.setChannel(channel_destination.id, `${!args.reason ? `pas de raison en particulier` : args.reason}`);
             nbMembre++;
         });
-        return message.reply(`${nbMembre} Membre(s):\n <#${channel_depart.id}> => <#${channelB.id}>`)
+        return await message.interaction.reply(`${nbMembre} Membre(s):\n <#${channel_depart.id}> => <#${channel_destination.id}>`);
     }
 }
 
