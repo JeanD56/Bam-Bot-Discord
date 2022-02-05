@@ -54,7 +54,6 @@ class MoveAllCommand extends Command {
      */
 
     async execSlash(message, args) {
-        console.log(args.destination)
         let channel_depart = message.guild.members.cache.get(message.author.id).voice.channel;
         let channel_destination = this.client.guilds.cache.get(message.guild.id).channels.cache.get(args.destination);
         let nbMembre = 0;
