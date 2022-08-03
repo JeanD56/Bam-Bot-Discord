@@ -27,7 +27,7 @@
     "express-passport": "^0.1.0",
     "express-session": "^1.17.2",
     "memorystore": "^1.6.6",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2",
     "mongoose": "^6.0.11",
     "ms": "^2.1.3",
