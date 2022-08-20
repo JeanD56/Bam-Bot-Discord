@@ -18,8 +18,9 @@
             }));
         }
 
-        client.application.commands.set(client.commands.map(cmd => {
-            if (!cmd.indev && !cmd.ownerOnly) return cmd;
-        }));
+        client.application.commands.set(client.commands.map(cmd => { return cmd })) 
+            /*console.log(cmd)
+             (!cmd.indev && !cmd.ownerOnly) return cmd;
+        }))*/
     }
 }
