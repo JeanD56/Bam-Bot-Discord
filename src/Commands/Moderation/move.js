@@ -3,7 +3,7 @@
 module.exports = {
     name: "move",
     description: "move tout les membre d'un channel vers un autre",
-    permissions: ["ADMINISTRATOR"],
+    //permissions: ["ADMINISTRATOR"],
 
     run: (client, message, args) => {
         return
