@@ -1,0 +1,16 @@
+const { EmbedBuilder } = require("discord.js");
+
+module.exports = {
+    name: "create",
+    description: "cree un evenement",
+    permissions: [],
+
+    run: (client, message, args) => {
+        return
+    },
+    runInteraction: async (client, interaction) => {
+
+        const message = interaction.user.send('test');
+
+    }
+}
