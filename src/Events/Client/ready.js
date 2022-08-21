@@ -18,6 +18,6 @@
         }
 
 
-        client.application.commands.set(client.commandsSlash.map(cmd => { return cmd }))
+        client.application.commands.set(client.commandsInteract.map(cmd => { return cmd }))
     }
 }

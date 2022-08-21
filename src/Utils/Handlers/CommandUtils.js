@@ -1,5 +1,6 @@
 const { promisify } = require('util');
 const { glob } = require('glob');
+const { ownerOnly } = require('../../Commands/Moderation/settings');
 const pGlob = promisify(glob);
 
 module.exports = async client => {
@@ -34,7 +35,7 @@ module.exports = async client => {
 
 
         if (!cmd.slashCommand || cmd.ownerOnly) client.commands.set(cmd.name, cmd);
-        if (cmd.slashCommand && !cmd.inDev) client.commandsSlash.set(cmd.name, cmd);
+        if (cmd.slashCommand && !cmd.inDev && !ownerOnly) client.commandsInteract.set(cmd.name, cmd);
         if (cmd.slashCommand && cmd.inDev) client.slashInDev.set(cmd.name, cmd);
 
         let args = [cmd.slashCommand, cmd.inDev, cmd.ownerOnly];

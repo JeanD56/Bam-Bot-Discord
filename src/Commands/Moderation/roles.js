@@ -11,7 +11,6 @@ const roleMenu = new ActionRowBuilder()
 module.exports = {
     name: "roles",
     description: "nouvelle version de reaction role",
-    ownerOnly: false,
 
     run: (client, message, args) => {
         return

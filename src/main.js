@@ -48,7 +48,7 @@ client.config = {
 };
 
 
-["commands", "commandsSlash", "slashInDev", "interactionElement", "interactionElement", "f", "models", "log"].forEach(i => client[i] = new Collection());
+["commands", "commandsInteract", "slashInDev", "interactionElement", "interactionElement", "f", "models", "log"].forEach(i => client[i] = new Collection());
 client.f.db = new Collection();
 ["guild", "moderation", "user"].forEach(i => client.f.db[i] = new Collection());
 ["buttons", "selectMenus"].forEach(i => client.interactionElement[i] = new Collection());

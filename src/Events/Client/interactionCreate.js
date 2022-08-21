@@ -5,7 +5,7 @@ module.exports = {
 
     async execute(client, interaction) {
         if (interaction.type === InteractionType.ApplicationCommand || interaction.type === ComponentType.ActionRow) {
-            const cmd = client.commands.get(interaction.commandName);
+            const cmd = client.commandsInteract.get(interaction.commandName);
             if (!cmd) return interaction.reply({ content: `Cette commande n'hexiste pas`, ephemeral: true });
             client.emit('debutCommande', interaction, cmd);
             cmd.runInteraction(client, interaction)
