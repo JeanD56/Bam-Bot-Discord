@@ -29,8 +29,15 @@ client.config = {
         blockBots: true,
         defaultCooldown: 2000,
         directory: './src/Commands',
-        defaultDescription: '<Pas de Description>',
-        allowMention: false
+        allowMention: false,
+        defaultOption: {
+            description: '<Pas de Description>',
+            slashCommand: true,
+            inDev: false,
+            ownerOnly: false,
+            run: async _ => {return},
+            runInteraction: async _ => {return},
+        }
     },
     eventHandler: {
         directory: './src/Events'
@@ -41,7 +48,7 @@ client.config = {
 };
 
 
-["commands", "interactionElement", "interactionElement", "f", "models", "log"].forEach(i => client[i] = new Collection());
+["commands", "commandsSlash", "slashInDev", "interactionElement", "interactionElement", "f", "models", "log"].forEach(i => client[i] = new Collection());
 client.f.db = new Collection();
 ["guild", "moderation", "user"].forEach(i => client.f.db[i] = new Collection());
 ["buttons", "selectMenus"].forEach(i => client.interactionElement[i] = new Collection());

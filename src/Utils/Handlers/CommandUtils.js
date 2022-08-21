@@ -4,7 +4,7 @@ const pGlob = promisify(glob);
 
 module.exports = async client => {
     (await pGlob(`${process.cwd()}/src/Commands/*/*.js`)).map(async cmdFile => {
-        const cmd = require(cmdFile);
+        const cmd = require(cmdFile);   
 
         if (!cmd.name) return client.log.get('warn')(`Commande non-chargee: pas de nom\nFichier -> ${cmdFile}`);
         if (!cmd.description && !cmd.type) {
@@ -13,26 +13,37 @@ module.exports = async client => {
         };
         if (!cmd.permissions) {
             cmd.permissions = []
-        }
+        };
 
         cmd.permissions.forEach(perm => {
             if (!permissionList.includes(perm)) {
                 return client.log.get('typo')(`la permission "${perm}" de la commande "${cmd.name}" n'est pas valide`)
             }
-        })
+        });
 
         if (client.config.commandHandler.automateCategories) {
             if (!cmd.category) {
                 let cmdFileArray = cmdFile.split('/');
                 cmd.category = cmdFileArray[cmdFileArray.length - 2];
             }
-        }
+        };
+
+        if (!cmd.slashCommand) cmd.slashCommand = client.config.commandHandler.defaultOption.slashCommand;
+        if (!cmd.inDev) cmd.inDev = client.config.commandHandler.defaultOption.inDev;
+        if (!cmd.ownerOnly) cmd.ownerOnly = client.config.commandHandler.defaultOption.ownerOnly;
 
 
-        client.commands.set(cmd.name, cmd);
-        //client.commandsSlash.set(cmd.name, cmd)
-        
-        client.log.get('command')(`loaded => ${cmd.name}`);
+        if (!cmd.slashCommand || cmd.ownerOnly) client.commands.set(cmd.name, cmd);
+        if (cmd.slashCommand && !cmd.inDev) client.commandsSlash.set(cmd.name, cmd);
+        if (cmd.slashCommand && cmd.inDev) client.slashInDev.set(cmd.name, cmd);
+
+        let args = [cmd.slashCommand, cmd.inDev, cmd.ownerOnly];
+
+        if (args[2]) args[2] = 'ownerOnly'; else args[2] = '          ';
+        if (args[1]) args[1] = 'inDev'; else args[1] = '     ';
+        if (args[0]) args[0] = 'slash'; else args[0] = '     ';
+
+        client.log.get('command')(`loaded => ${cmd.name} ${args ? `\t[${args.join(', ')}]` : ''}`);
     });
 }
 
