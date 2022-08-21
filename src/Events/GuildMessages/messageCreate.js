@@ -27,6 +27,6 @@ module.exports = {
         for (var i = 0; i < content.length; i++) {
             if (content[i] === "quoi" || content[i] === "kwa") feur = 1;
         };
-        if (feur == 1) message.reply('Feur !');
+        //if (feur == 1) message.reply('Feur !');
     }
 }
