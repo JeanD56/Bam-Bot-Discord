@@ -9,6 +9,7 @@
             await client.f.db.moderation.create();
         }*/
 
+
         if (client.config.dev.inDev && client.config.dev.guildDevID) {
             let devGuildID = client.config.dev.guildDevID;
             const devGuild = await client.guilds.cache.get(devGuildID);
@@ -16,7 +17,6 @@
                 devGuild.commands.set(client.slashInDev.map(cmd => { return cmd }));
             }
         }
-
 
         client.application.commands.set(client.commandsInteract.map(cmd => { return cmd }))
     }

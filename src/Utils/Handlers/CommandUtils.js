@@ -29,7 +29,6 @@ module.exports = async client => {
             }
         };
 
-        if(cmd.name == "emit") console.log(cmd)
 
         if (!cmd.slashCommand) cmd.slashCommand = client.config.commandHandler.defaultOption.slashCommand;
         if (!cmd.inDev) cmd.inDev = client.config.commandHandler.defaultOption.inDev;
@@ -37,7 +36,7 @@ module.exports = async client => {
 
 
         if (!cmd.slashCommand || cmd.ownerOnly) client.commands.set(cmd.name, cmd);
-        if (cmd.slashCommand && !cmd.inDev && !ownerOnly) client.commandsInteract.set(cmd.name, cmd);
+        if (cmd.slashCommand && !cmd.inDev && !cmd.ownerOnly) client.commandsInteract.set(cmd.name, cmd);
         if (cmd.slashCommand && cmd.inDev) client.slashInDev.set(cmd.name, cmd);
 
         let args = [cmd.slashCommand, cmd.inDev, cmd.ownerOnly];
