@@ -27,7 +27,8 @@ const buttons = new ActionRowBuilder()
 module.exports = {
     name: "button",
     description: "test les bouttons",
-    ownerOnly: true,
+    ownerOnly: false,
+    inDev: true,
 
     run: (client, message, args) => {
         return message.reply({

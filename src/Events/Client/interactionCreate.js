@@ -16,13 +16,13 @@ module.exports = {
         }
         else if (interaction.type === ComponentType.Button) {
             const btn = client.interactionElement.buttons.get(interaction.customId);
-            if (!btn) return interaction.reply(`ce Boutton n'est pas definie`);
-            btn.runInteraction(client, interaction);
+            //if (!btn) return interaction.reply(`ce Boutton n'est pas definie`);
+            if(btn) btn.runInteraction(client, interaction);
         }
         else if (interaction.type === ComponentType.SelectMenu) {
             const stcMenu = client.interactionElement.selectMenus.get(interaction.customId);
-            if (!stcMenu) return interaction.reply(`ce menu n'est pas definie`);
-            stcMenu.runInteraction(client, interaction);
+            //if (!stcMenu) return interaction.reply(`ce menu n'est pas definie`);
+            if (stcMenu) stcMenu.runInteraction(client, interaction);
         }
     }
 }

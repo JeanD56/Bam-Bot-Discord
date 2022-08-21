@@ -35,6 +35,10 @@ const guildSchema = mongoose.Schema({
             memberLeave: { type: Boolean, default: false },
             image: { type: String, default: "https://images.photowall.com/products/58243/galaxy-1.jpg?h=699&q=85" },
         },
+        autoRole: {
+            active: { type: Boolean, default: false },
+            roles: [String]
+        },
         mute: {
             global: [{
                 user: String,

@@ -9,7 +9,7 @@ const roleMenu = new ActionRowBuilder()
     );
 
 module.exports = {
-    name: "roles",
+    name: "settings",
     description: "nouvelle version de reaction role",
     ownerOnly: false,
     inDev: true,
