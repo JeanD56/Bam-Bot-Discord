@@ -19,14 +19,14 @@ module.exports = {
                     bot: m.bot
                 }
                 memberListDB.push(member)
-                console.log(`New Member -> ${guild.name} <- ${m.user.tag}`);
+                console.log(`+ Membe -> ${guild.name} <- ${m.user.tag}`);
             } else {
                 let Bot = {
                     id: m.id,
                     name: m.displayName,
                 }
                 botListDB.push(Bot)
-                console.log(`New Bot -> ${guild.name} <- ${m.user.username}`);
+                console.log(`+ Bot   -> ${guild.name} <- ${m.user.username}`);
             }
         })
 
@@ -39,6 +39,6 @@ module.exports = {
             bots: botListDB,
             settings: { prefix: process.env.Prefix }
         });
-        console.log(`New Guild -> ${guild.name}`);
+        console.log(`+ Guild -> ${guild.name}`);
     }
 }

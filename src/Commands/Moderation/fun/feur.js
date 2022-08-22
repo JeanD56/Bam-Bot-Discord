@@ -16,7 +16,7 @@ module.exports = {
 
     options: [
         {
-            name: "activer?",
+            name: "activer",
             description: "-",
             type: ApplicationCommandOptionType.Boolean,
         }

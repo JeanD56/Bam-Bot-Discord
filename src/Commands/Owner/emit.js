@@ -3,7 +3,8 @@ const { ApplicationCommandOptionType } = require("discord.js");
 module.exports = {
     name: "emit",
     description: "emet un evenement",
-    ownerOnly: true,
+    ownerOnly: false,
+    inDev: true,
 
     run: (client, message, args) => {
         if (args[0] || !args[0].match(/^(guildMemberAdd|guildMemberRemove)$/)) return message.reply("merci de mettre un event valide");

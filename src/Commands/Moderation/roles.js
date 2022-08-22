@@ -30,7 +30,7 @@ module.exports = {
 
             if (!(r.name == "@everyone" || r.tags.botID) && r.editable) {
                 roles.push({
-                    label: r.name,
+                    label: "<!@"+r.id+">",
                     value: r.id
                 })
             }

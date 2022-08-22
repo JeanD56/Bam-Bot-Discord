@@ -1,6 +1,5 @@
 const { promisify } = require('util');
 const { glob } = require('glob');
-const { ownerOnly } = require('../../Commands/Moderation/settings');
 const pGlob = promisify(glob);
 
 module.exports = async client => {

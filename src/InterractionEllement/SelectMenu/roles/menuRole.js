@@ -30,7 +30,6 @@ module.exports = {
                 }
             })
         }
-
         await interaction.member.roles.remove(rolesDel.id);
         await interaction.member.roles.add(rolesAdd.id)
         return await interaction.reply({

@@ -2,7 +2,7 @@ const { Formatters } = require("discord.js");
 const dayjs = require('dayjs');
 
 module.exports = {
-    name: "guildMemberAdd",
+    name: "guildMemberRemove",
 
     async execute(client, member) {
         const logChannel = client.channels.cache.get("544351989056667648");
@@ -13,7 +13,7 @@ module.exports = {
         }
 
         logChannel.send({
-            content: `${member.user.tag} viens de rejoindre le didi à ${Timestamp.constant} (${Timestamp.relative})`
+            content: `${member.user.tag} viens de quitter le didi à ${Timestamp.constant} (${Timestamp.relative})`
         })
     }
 }
