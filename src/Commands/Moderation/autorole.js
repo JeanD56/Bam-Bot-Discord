@@ -24,8 +24,7 @@ const autoRoleButtons = new ActionRowBuilder()
 
 module.exports = {
     name: "auto-role",
-    description: "système d'autorole",
-    inDev: true,
+    description: "systÃ¨me d'autorole",
 
     run: (client, message, args) => {
         return
