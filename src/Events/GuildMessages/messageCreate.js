@@ -22,13 +22,14 @@ module.exports = {
         if (cmd) cmd.run(client, message, args);
 
 
-        let feur = 0
-        let content = message.content.toLowerCase().split(' ');
-        for (var i = 0; i < content.length; i++) {
-            if (content[i] === "quoi" || content[i] === "kwa") feur = 1;
-        };
         let dbGuild = await client.f.db.guild.get(message.guild);
-        feur = dbGuild.settings.fun.feur;
-        if (feur == 1) message.reply('Feur !');
+        if (dbGuild.settings.fun.feur){
+            let feur = 0
+            let content = message.content.toLowerCase().split(' ');
+            for (var i = 0; i < content.length; i++) {
+                if (content[i] === "quoi" || content[i] === "kwa") feur = 1;
+            };
+            if (feur == 1) message.reply('Feur !');
+        }
     }
 }
