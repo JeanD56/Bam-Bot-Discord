@@ -24,7 +24,7 @@ module.exports = {
     runInteraction: async (client, interaction) => {
         let dbGuild = await client.f.db.guild.get(interaction.guild);
         if (interaction.options.getBoolean('activer')){
-            dbGuild.settings.fun.feur != not dbGuild.settings.fun.feur;
+            dbGuild.settings.fun.feur = not dbGuild.settings.fun.feur;
             client.f.db.guild.set(interraction.guild, dbGuild);
             return await interraction.reply({
                 content: "la commande a été modifier"
