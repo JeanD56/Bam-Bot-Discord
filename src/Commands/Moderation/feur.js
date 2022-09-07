@@ -11,7 +11,7 @@ const roleMenu = new ActionRowBuilder()
 module.exports = {
     name: "feur",
     description: "repond feur a casi tout les message qui finnisent par 'quoi'",
-    inDev: true,
+    inDev: false,
     ownerOnly: false,
 
     options: [
