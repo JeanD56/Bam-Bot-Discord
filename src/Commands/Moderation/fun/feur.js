@@ -16,12 +16,23 @@ module.exports = {
 
     options: [
         {
-            name: "activer",
+            name: "changer",
             description: "-",
             type: ApplicationCommandOptionType.Boolean,
         }
     ],
     runInteraction: async (client, interaction) => {
-        return
+        let dbGuild = await client.f.db.guild.get(interaction.guild);
+        if (interaction.options.getBoolean('activer')){
+            dbGuild.settings.fun.feur != not dbGuild.settings.fun.feur;
+            client.f.db.guild.set(interraction.guild, dbGuild);
+            return await interraction.reply({
+                content: "la commande a été modifier"
+            });
+        } else {
+            return await interraction.reply({
+                content: `cet commande est actuelement a ${dbGuild.settings.fun.feur}`
+            });
+        }
     }
 }
