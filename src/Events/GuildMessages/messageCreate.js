@@ -3,7 +3,7 @@
 module.exports = {
     name: "messageCreate",
 
-    execute(client, message) {
+    async execute(client, message) {
         if (message.author.bot) return;
         //if (!message.content.startsWith(prefix)) return;
 
@@ -27,6 +27,8 @@ module.exports = {
         for (var i = 0; i < content.length; i++) {
             if (content[i] === "quoi" || content[i] === "kwa") feur = 1;
         };
+        let dbGuild = await client.f.db.guild.get(message.guild);
+        feur = dbGuild.settings.fun.feur;
         if (feur == 1) message.reply('Feur !');
     }
 }
